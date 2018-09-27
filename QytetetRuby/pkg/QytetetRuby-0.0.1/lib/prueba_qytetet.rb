@@ -4,15 +4,16 @@ module ModeloQytetet
   class PruebaQytetet
     @@juego = Qytetet.new
     def main
-      puts "ValorMayorQueCero #{ValorMayorQueCero()}"
-      puts "ValorMayorQueCero #{CartasIrA()}"
-      puts "ValorMayorQueCero #{FiltrarTipo(TipoSorpresa::SALIRCARCEL)}"
+      puts "ValorMayorQueCero #{ValorMayorQueCero().join(",")} "
+      #puts "CartasIrA #{CartasIrA()}"
+      #puts "Cartas SalirCarcel #{FiltrarTipo(TipoSorpresa::SALIRCARCEL)}"
     end
    
     def ValorMayorQueCero
       @@juego.inicializarCartasSorpresa
       temporal = Array.new
-      for i in 0..@@juego.mazo.size
+      
+      for i in 0...@@juego.mazo.size
         if @@juego.mazo[i].valor > 0
           temporal << @@juego.mazo[i]
         end
@@ -22,7 +23,7 @@ module ModeloQytetet
     
     def CartasIrA
       temporal = Array.new
-      for i in 0..@@juego.mazo.size
+      for i in 0...@@juego.mazo.size
         if @@juego.mazo[i].tipo == TipoSorpresa::IRACASILLA
           temporal << @@juego.mazo[i]
         end
@@ -32,7 +33,7 @@ module ModeloQytetet
     
     def FiltrarTipo(tipo)
       temporal = Array.new
-      for i in 0..@@juego.mazo.size
+      for i in 0...@@juego.mazo.size
         if @@juego.mazo[i].tipo == tipo
           temporal << @@juego.mazo[i]
         end
