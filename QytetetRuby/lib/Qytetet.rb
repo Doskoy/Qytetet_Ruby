@@ -6,8 +6,6 @@ module ModeloQytetet
   class Qytetet
     attr_reader :mazo
     
-    #asd
-    
     def inicializarCartasSorpresa
       @mazo = Array.new
       @mazo << Sorpresa.new("El banco se ha equivocado en algunas cuentas y te devuelven dinero. Es que no estudian...", 250, TipoSorpresa::PAGARCOBRAR)
