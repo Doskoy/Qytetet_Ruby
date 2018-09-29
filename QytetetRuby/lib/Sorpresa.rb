@@ -1,22 +1,11 @@
 #encoding: utf-8
 module ModeloQytetet
   class Sorpresa
+    attr_reader :sorpresa, :tipo, :valor
     def initialize(sorpresa, valor, tipo)
     @sorpresa = sorpresa
     @tipo = tipo
     @valor = valor
-    end
-    
-    def sorpresa
-      @sorpresa
-    end
-    
-    def tipo
-      @tipo
-    end
-    
-    def valor
-      @valor
     end
     
     def to_s
