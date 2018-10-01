@@ -3,20 +3,20 @@
 module ModeloQytetet
   class Casilla
     attr_reader :numeroCasilla, :coste, :tipo, :titulo
-    def initialize(tipo, coste, numeroCasilla, precioEdificar, factorRevalorizacion, alquilerBase, hipotecaBase)
+    def initialize(tipo, numeroCasilla,titulo=0)
       @tipo = tipo
+      @numeroCasilla = numeroCasilla
       if tipo==TipoCasilla::CALLE
-        constructor_calle(coste, numeroCasilla, precioEdificar, factorRevalorizacion, alquilerBase, hipotecaBase)
+        constructor_calle(titulo)
       else
         constructor_nocalle(numeroCasilla)
       end
     end
     
     private
-    def constructor_calle(coste, numeroCasilla, precioEdificar, factorRevalorizacion, alquilerBase, hipotecaBase)
-      @titulo = TituloPropiedad.new(coste, precioEdificar, factorRevalorizacion, alquilerBase, hipotecaBase)
+    def constructor_calle(titulo)
+      @titulo = titulo
       @coste = @titulo.precioCompra
-      @numeroCasilla = numeroCasilla
     end
     
     def constructor_nocalle(numeroCasilla)
@@ -26,8 +26,8 @@ module ModeloQytetet
     end
     
     public
-    def set_titulo(coste, precioEdificar, factorRevalorizacion, alquilerBase, hipotecaBase)
-      @titulo = TituloPropiedad.new(coste, precioEdificar, factorRevalorizacion, alquilerBase, hipotecaBase)
+    def set_titulo(titulo)
+      @titulo = titulo
     end
     
     def to_s
