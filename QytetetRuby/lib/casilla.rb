@@ -9,7 +9,7 @@ module ModeloQytetet
       if tipo==TipoCasilla::CALLE
         constructor_calle(titulo)
       else
-        constructor_nocalle(numeroCasilla)
+        constructor_nocalle
       end
     end
     
@@ -19,10 +19,9 @@ module ModeloQytetet
       @coste = @titulo.precioCompra
     end
     
-    def constructor_nocalle(numeroCasilla)
+    def constructor_nocalle
       @titulo = 0
       @coste = 0
-      @numeroCasilla = numeroCasilla
     end
     
     public
