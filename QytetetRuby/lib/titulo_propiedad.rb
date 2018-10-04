@@ -2,11 +2,12 @@
 module ModeloQytetet
   class TituloPropiedad
     attr_reader :nombre, :precioCompra, :alquilerBase, :factorRevalorizacion, :hipotecaBase, :precioEdificar, :numHoteles, :numCasas
-    attr_accesor:hipotecada
-      def initialize(precioCompra, precioEdificar, factorRevalorizacion, alquilerBase, hipotecaBase)
+    attr_accessor:hipotecada
+      def initialize(nombre, precioCompra, precioEdificar, factorRevalorizacion, alquilerBase, hipotecaBase)
         @hipotecada = false
         @numHoteles = 0
         @numCasas = 0
+        @nombre = nombre
         
         if precioCompra >= 500 && precioCompra <= 1000
           @precioCompra = precioCompra

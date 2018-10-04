@@ -1,12 +1,20 @@
 #encoding: utf-8
 require_relative "Qytetet"
+require_relative "tablero"
 module ModeloQytetet
   class PruebaQytetet
     @@juego = Qytetet.new
+    attr_accessor :tablero
+    def initialize
+      @tablero = Tablero.new
+    end
+    
     def main
-      puts "ValorMayorQueCero #{ValorMayorQueCero().join(",")} "
-      #puts "CartasIrA #{CartasIrA()}"
-      #puts "Cartas SalirCarcel #{FiltrarTipo(TipoSorpresa::SALIRCARCEL)}"
+      #puts "ValorMayorQueCero #{ValorMayorQueCero().join(",")} "
+      #puts "CartasIrA #{CartasIrA().join(",")}"
+      #puts "Cartas SalirCarcel #{FiltrarTipo(TipoSorpresa::SALIRCARCEL).join(",")}"
+      
+      puts @tablero.to_s
     end
    
     def ValorMayorQueCero

@@ -1,30 +1,46 @@
 #encoding: utf-8
+require_relative "titulo_propiedad"
 
 module ModeloQytetet
   class Casilla
     attr_reader :numeroCasilla, :coste, :tipo, :titulo
-    def initialize(tipo, numeroCasilla,titulo=0)
+    def initialize(tipo, coste, numeroCasilla, titulo)
       @tipo = tipo
+      @coste = coste
       @numeroCasilla = numeroCasilla
-      if tipo==TipoCasilla::CALLE
-        constructor_calle(titulo)
-      else
-        constructor_nocalle
-      end
-    end
-    
-    private
-    def constructor_calle(titulo)
       @titulo = titulo
-      @coste = @titulo.precioCompra
     end
     
-    def constructor_nocalle
-      @titulo = 0
-      @coste = 0
+    def self.newCalle(numeroCasilla, titulo)
+      new(TipoCasilla::CALLE, titulo.precioCompra, numeroCasilla, titulo)
     end
     
-    public
+    def self.newImpuesto(numeroCasilla, coste)
+      new(TipoCasilla::IMPUESTO, coste, numeroCasilla, nil)
+    end
+    
+    def self.newSorpresa(numeroCasilla)
+      new(TipoCasilla::SORPRESA, 0, numeroCasilla, nil)
+    end
+    
+    def self.newSalida(numeroCasilla)
+      new(TipoCasilla::SALIDA, 1000, numeroCasilla, nil)
+    end
+    
+    def self.newJuez(numeroCasilla)
+      new(TipoCasilla::JUEZ, 0, numeroCasilla, nil)
+    end
+    
+    def self.newParking(numeroCasilla)
+      new(TipoCasilla::PARKING, 0, numeroCasilla, nil)
+    end
+    
+    def self.newCarcel(numeroCasilla)
+      new(TipoCasilla::CARCEL, 0, numeroCasilla, nil)
+    end
+    
+    private_class_method :new
+    
     def set_titulo(titulo)
       @titulo = titulo
     end
@@ -35,6 +51,8 @@ module ModeloQytetet
         texto << "\n#{@titulo}"
       else
         texto << "No tiene"
+        
+      texto
       end
     end
   end

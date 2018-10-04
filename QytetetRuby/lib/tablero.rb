@@ -1,7 +1,7 @@
 #encoding: utf-8
-require_relative "TituloPropiedad"
 require_relative "TipoCasilla"
-require_relative "Casilla"
+require_relative "casilla"
+require_relative "titulo_propiedad"
 module ModeloQytetet
   class Tablero
     attr_reader :casillas, :carcel
@@ -12,41 +12,51 @@ module ModeloQytetet
     private
     def inicializar
       @casillas = Array.new
-      @casillas << Casilla.new(TipoCasilla::SALIDA, 0)
+      @casillas << Casilla.newSalida(0)
       titulo = TituloPropiedad.new("Avenida de Andalucía", 800, 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::CALLE, 1, titulo)
+      @casillas << Casilla.newCalle(1, titulo)
       titulo = TituloPropiedad.new("Avenida de la Constitución", 800, 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::CALLE, 2, titulo)
-      @casillas << Casilla.new(TipoCasilla::SORPRESA, 3)
+      @casillas << Casilla.newCalle(2, titulo)
+      @casillas << Casilla.newSorpresa(3)
       titulo = TituloPropiedad.new("Parque Almunia", 800, 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::CALLE, 4, titulo)
-      @casillas << Casilla.new(TipoCasilla::CARCEL, 5)
-      titulo = TituloPropiedad.new("Gran Vía de Colón", 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::CALLE, 6, titulo)
-      @casillas << Casilla.new(TipoCasilla::SORPRESA, 7)
+      @casillas << Casilla.newCalle(4, titulo)
+      @casillas << Casilla.newCarcel(5)
+      titulo = TituloPropiedad.new("Gran Vía de Colón",800 ,500, 10, 60, 200)
+      @casillas << Casilla.newCalle(6, titulo)
+      @casillas << Casilla.newSorpresa(7)
       titulo = TituloPropiedad.new("Avenida de Dilar", 800, 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::CALLE, 8, titulo)
+      @casillas << Casilla.newCalle(8, titulo)
       titulo = TituloPropiedad.new("Camino de Ronda", 800, 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::CALLE, 9, titulo)
-      @casillas << Casilla.new(TipoCasilla::PARKING, 10)
+      @casillas << Casilla.newCalle(9, titulo)
+      @casillas << Casilla.newParking(10)
       titulo = TituloPropiedad.new("Recogidas", 800, 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::CALLE, 11, titulo)
+      @casillas << Casilla.newCalle(11, titulo)
       titulo = TituloPropiedad.new("Avenida de Juan Pablo II", 800, 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::CALLE, 12, titulo)
-      @casillas << Casilla.new(TipoCasilla::SORPRESA, 13)
+      @casillas << Casilla.newCalle(12, titulo)
+      @casillas << Casilla.newSorpresa(13)
       titulo = TituloPropiedad.new("Plaza de Bib-Rambla", 800, 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::CALLE, 14, titulo)
-      @casillas << Casilla.new(TipoCasilla::JUEZ, 15)
+      @casillas << Casilla.newCalle(14, titulo)
+      @casillas << Casilla.newJuez(15)
       titulo = TituloPropiedad.new("Calle Mesones", 800, 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::CALLE, 16, titulo)
+      @casillas << Casilla.newCalle(16, titulo)
       titulo = TituloPropiedad.new("Jardines del Triunfo", 800, 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::CALLE, 17, titulo)
-      titulo = TituloPropiedad.new("Calle Acera del Darro", 800, 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::IMPUESTO, 18, titulo)
+      @casillas << Casilla.newCalle(17, titulo)
+      @casillas << Casilla.newImpuesto(18, 100)
       titulo = TituloPropiedad.new("Parque Almunia", 800, 500, 10, 60, 200)
-      @casillas << Casilla.new(TipoCasilla::CALLE, 19)
+      @casillas << Casilla.newCalle(19, titulo)
       
-      @carcel = casillas[5]
+      @carcel = @casillas[5]
+    end
+    
+    public
+    def to_s
+      texto = ""
+      
+      for i in 0...@casillas.size
+        texto += @casillas[i].to_s + "\n"
+      end
+      
+      texto
     end
   end
 end

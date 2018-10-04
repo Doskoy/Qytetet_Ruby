@@ -3,9 +3,9 @@ module ModeloQytetet
   class Sorpresa
     attr_reader :sorpresa, :tipo, :valor
     def initialize(sorpresa, valor, tipo)
-    @sorpresa = sorpresa
-    @tipo = tipo
-    @valor = valor
+      @sorpresa = sorpresa
+      @tipo = tipo
+      @valor = valor
     end
     
     def to_s
