@@ -53,7 +53,7 @@ module ModeloQytetet
       texto = ""
       
       for i in 0...@casillas.size
-        texto += @casillas[i].to_s + "\n"
+        texto += @casillas[i].to_s + "\n-----------------------------------------------\n"
       end
       
       texto

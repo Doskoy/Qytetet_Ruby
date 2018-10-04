@@ -14,7 +14,7 @@ module ModeloQytetet
       #puts "CartasIrA #{CartasIrA().join(",")}"
       #puts "Cartas SalirCarcel #{FiltrarTipo(TipoSorpresa::SALIRCARCEL).join(",")}"
       
-      puts @tablero.to_s
+      puts @tablero
     end
    
     def ValorMayorQueCero
@@ -52,7 +52,6 @@ module ModeloQytetet
     
     
   end
-  #Hola
   x = PruebaQytetet.new
   x.main
   

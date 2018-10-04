@@ -55,8 +55,7 @@ module ModeloQytetet
         else
           texto << "No"
         end
-        texto << "\nPrecio de compra: #{@precioCompra}\nAlquiler base: #{@alquilerBase}\nFactor de revalorización: #{@factorRevalorizacion}\n
-        Hipoteca base: #{@hipotecaBase}\nPrecio de edificar: #{@precioEdificar}\nNúmero de hoteles/casas: #{@numHoteles}/#{@numCasas}"
+        texto << "\nPrecio de compra: #{@precioCompra}\nAlquiler base: #{@alquilerBase}\nFactor de revalorización: #{@factorRevalorizacion}\nHipoteca base: #{@hipotecaBase}\nPrecio de edificar: #{@precioEdificar}\nNúmero de hoteles/casas: #{@numHoteles}/#{@numCasas}"
         texto
       end
       

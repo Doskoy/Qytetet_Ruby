@@ -47,7 +47,8 @@ module ModeloQytetet
     
     def to_s
       texto = "Estás en la casilla: #{@numeroCasilla}\nCoste de la casilla: #{@coste}\nTipo de casilla: #{@tipo}\nTítulo: "
-      unless @titulo == 0
+      
+      unless @titulo == nil
         texto << "\n#{@titulo}"
       else
         texto << "No tiene"

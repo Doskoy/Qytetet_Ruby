@@ -6,7 +6,7 @@ require_relative "casilla"
 
 module ModeloQytetet
   class Qytetet
-    attr_reader :mazo, :tablero
+    attr_reader :mazo
     
     def inicializarCartasSorpresa
       @tablero = Tablero.new
