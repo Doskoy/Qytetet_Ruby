@@ -3,7 +3,8 @@ require_relative "titulo_propiedad"
 
 module ModeloQytetet
   class Casilla
-    attr_reader :numeroCasilla, :coste, :tipo, :titulo
+    attr_reader :numeroCasilla, :coste, :tipo
+    attr_acessor :titulo
     def initialize(tipo, coste, numeroCasilla, titulo)
       @tipo = tipo
       @coste = coste
@@ -43,6 +44,26 @@ module ModeloQytetet
     
     def set_titulo(titulo)
       @titulo = titulo
+    end
+    
+    def asignarPropietario(jugador)
+      raise NotImplementedError
+    end
+    
+    def pagarAlquiler
+      raise NotImplementedError
+    end
+    
+    def propietarioEncarcelado
+      raise NotImplementedError
+    end
+    
+    def soyEdificable
+      raise NotImplementedError
+    end
+    
+    def tengoPropietario
+      raise NotImplementedError
     end
     
     def to_s
