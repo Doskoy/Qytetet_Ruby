@@ -48,6 +48,18 @@ module ModeloQytetet
       @carcel = @casillas[5]
     end
     
+    def esCasillaCarcel(numeroCasilla)
+      
+    end
+    
+    def obtenerCasillaFinal(casilla, desplazamiento)
+      
+    end
+    
+    def obenerCasillaNumero(numeroCasilla)
+      
+    end
+    
     public
     def to_s
       texto = ""

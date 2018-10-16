@@ -1,8 +1,10 @@
 #encoding: utf-8
+require_relative "jugador"
 module ModeloQytetet
   class TituloPropiedad
-    attr_reader :nombre, :precioCompra, :alquilerBase, :factorRevalorizacion, :hipotecaBase, :precioEdificar, :numHoteles, :numCasas
-    attr_accessor:hipotecada
+    attr_reader :nombre, :precioCompra, :alquilerBase, :factorRevalorizacion, :hipotecaBase, :precioEdificar, :numHoteles, :numCasas, :propietario
+    attr_accessor :hipotecada
+    attr_writer :propietario
       def initialize(nombre, precioCompra, precioEdificar, factorRevalorizacion, alquilerBase, hipotecaBase)
         @hipotecada = false
         @numHoteles = 0
@@ -46,6 +48,66 @@ module ModeloQytetet
           @alquilerBase = 150
         end
       end
+      
+      def calcularCosteCancelar() 
+        raise NotImplementedError
+      end
+      
+      def calcularCosteHipotecar()
+        raise NotImplementedError
+      end
+      
+      def calcularImporteAlquiler()
+        raise NotImplementedError
+      end
+      
+      def calcularPrecioVenta()
+        raise NotImplementedError
+      end
+      
+      def cancelarHipoteca
+        raise NotImplementedError
+      end
+      
+      def cobrarAlquiler(coste)
+        raise NotImplementedError
+      end
+      
+      def edificarCasa()
+        raise NotImplementedError
+      end
+      
+      def edificarHotel()
+        raise NotImplementedError
+      end
+      
+      def getPropietario()
+        raise NotImplementedError
+      end
+      
+      def hipotecar()
+        raise NotImplementedError
+      end
+      
+      def pagarAlquiler()
+        raise NotImplementedError
+      end
+      
+      def propietarioEncarcelado()
+        raise NotImplementedError
+      end
+      
+      def setPropietario(propietario)  
+        raise NotImplementedError
+      end
+      
+      def tengoPropietario()
+        raise NotImplementedError
+      end
+      
+      
+      
+      
       
       def to_s
         texto = "Nombre propiedad: #{@nombre}\nHipotecada: "
