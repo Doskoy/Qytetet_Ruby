@@ -19,6 +19,10 @@ module ModeloQytetet
         @@saldo_salida = 1000
     end
     
+    def self.getMaxJugadores
+      @@max_jugadores
+    end
+    
     def actuarSiEnCasillaEdificable
       raise NotImplementedError
     end

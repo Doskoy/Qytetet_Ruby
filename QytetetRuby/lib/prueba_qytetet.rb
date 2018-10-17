@@ -10,13 +10,7 @@ module ModeloQytetet
     end
     
     def main
-      nombres = Array.new
-      for i in 0...4
-        puts "Escribe el nombre del jugador #{i}: "
-        cadena = gets
-        nombres << cadena
-      end
-      
+      nombres = getNombreJugadores
       @@juego.inicializarJuego(nombres)
       
       puts "ValorMayorQueCero #{ValorMayorQueCero().join(",")} "
@@ -26,6 +20,16 @@ module ModeloQytetet
       puts @@juego.tablero
       
       puts @@juego.jugadores
+    end
+    
+    def getNombreJugadores
+      nombres = Array.new
+      for i in 0...Qytetet.getMaxJugadores
+        puts "Escribe el nombre del jugador #{i}: "
+        cadena = gets
+        nombres << cadena
+      end
+      nombres
     end
    
     def ValorMayorQueCero
