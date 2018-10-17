@@ -12,11 +12,11 @@ module ModeloQytetet
     attr_reader :mazo, :max_jugadores, :num_sorpresas, :num_casillas, :precio_libertad, :saldo_salida, :cartaActual, :dado, :jugadorActual, :jugadores, :tablero, :metodosalircarcel
     
     def initialize
-        @max_jugadores = 4
-        @num_sorpresas = 10
-        @num_casillas = 20
-        @precio_libertad = 200
-        @saldo_salida = 1000
+        @@max_jugadores = 4
+        @@num_sorpresas = 10
+        @@num_casillas = 20
+        @@precio_libertad = 200
+        @@saldo_salida = 1000
     end
     
     def actuarSiEnCasillaEdificable
@@ -75,7 +75,7 @@ module ModeloQytetet
     end
     
     def inicializarJuego(nombres)
-      inicializarJugagadores(nombres)
+      inicializarJugadores(nombres)
       inicializarTablero
       inicializarCartasSorpresa
     end

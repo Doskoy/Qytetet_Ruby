@@ -1,14 +1,19 @@
 #encoding: utf-8
+require_relative "casilla"
+require_relative "tablero"
 module ModeloQytetet
   class Jugador
   
-    attr_reader :cartaLibertad, :casillaActual, :encarcelado, :nombre, :propiedades, :saldo
+    attr_reader :nombre, :propiedades, :saldo
     attr_accessor :cartaLibertad, :casillaActual, :encarcelado
   
-    def initialize
+    def initialize(nombre)
       @encarcelado = false;
-      @nombre = "";
+      @nombre = nombre;
       @saldo = 7500;
+      @cartaLibertad = nil;
+      @casillaActual = nil;
+      @propiedades = Array.new
     end
   
     def cancelarHipoteca(titulo)
@@ -96,7 +101,11 @@ module ModeloQytetet
     end
   
     def to_s
-      texto = "Nombre: #{@nombre}\nSaldo: #{@saldo}\nEncarcelado: #{@encarcelado}\n"
+      texto = "Nombre: #{@nombre}\nSaldo: #{@saldo}\nEncarcelado: #{@encarcelado}\nEstá en la casilla: #{@casillaActual}\nCarta liberad: #{@cartaLibertad}\nPropiedades: \n"
+      
+      for i in 0...@propiedades.size
+        texto += "#{@propiedades[i]}\n"
+      end
       return texto
     end
   end

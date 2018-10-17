@@ -10,6 +10,7 @@ module ModeloQytetet
         @numHoteles = 0
         @numCasas = 0
         @nombre = nombre
+        @propietario = ""
         
         if precioCompra >= 500 && precioCompra <= 1000
           @precioCompra = precioCompra
@@ -110,7 +111,7 @@ module ModeloQytetet
       
       
       def to_s
-        texto = "Nombre propiedad: #{@nombre}\nHipotecada: "
+        texto = "Nombre propiedad: #{@nombre}\nPropietario: #{@propietarioa}\nHipotecada: "
         
         if@hipotecada == true
           texto << "Sí"

@@ -1,24 +1,34 @@
 #encoding: utf-8
 require_relative "Qytetet"
 require_relative "tablero"
+require_relative "TipoSorpresa"
 module ModeloQytetet
   class PruebaQytetet
     @@juego = Qytetet.instance
-    attr_accessor :tablero
+
     def initialize
-      @tablero = Tablero.new
     end
     
     def main
-      #puts "ValorMayorQueCero #{ValorMayorQueCero().join(",")} "
-      #puts "CartasIrA #{CartasIrA().join(",")}"
+      nombres = Array.new
+      for i in 0...4
+        puts "Escribe el nombre del jugador #{i}: "
+        cadena = gets
+        nombres << cadena
+      end
+      
+      @@juego.inicializarJuego(nombres)
+      
+      puts "ValorMayorQueCero #{ValorMayorQueCero().join(",")} "
+      puts "CartasIrA #{CartasIrA().join(",")}"
       puts "Cartas SalirCarcel #{FiltrarTipo(TipoSorpresa::SALIRCARCEL).join(",")}"
       
-      puts @tablero
+      puts @@juego.tablero
+      
+      puts @@juego.jugadores
     end
    
     def ValorMayorQueCero
-      @@juego.inicializarCartasSorpresa
       temporal = Array.new
       
       for i in 0...@@juego.mazo.size

@@ -56,7 +56,7 @@ module ModeloQytetet
       raise NotImplementedError
     end
     
-    def obenerCasillaNumero(numeroCasilla)
+    def obtenerCasillaNumero(numeroCasilla)
       raise NotImplementedError
     end
     
