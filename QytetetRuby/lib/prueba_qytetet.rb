@@ -9,7 +9,7 @@ module ModeloQytetet
     def initialize
     end
     
-    def main
+    def self.main
       nombres = getNombreJugadores
       @@juego.inicializarJuego(nombres)
       
@@ -22,7 +22,7 @@ module ModeloQytetet
       puts @@juego.jugadores
     end
     
-    def getNombreJugadores
+    def self.getNombreJugadores
       nombres = Array.new
       for i in 0...Qytetet.getMaxJugadores
         puts "Escribe el nombre del jugador #{i}: "
@@ -32,7 +32,7 @@ module ModeloQytetet
       nombres
     end
    
-    def ValorMayorQueCero
+    def self.ValorMayorQueCero
       temporal = Array.new
       
       for i in 0...@@juego.mazo.size
@@ -43,7 +43,7 @@ module ModeloQytetet
       return temporal
     end
     
-    def CartasIrA
+    def self.CartasIrA
       temporal = Array.new
       for i in 0...@@juego.mazo.size
         if @@juego.mazo[i].tipo == TipoSorpresa::IRACASILLA
@@ -53,7 +53,7 @@ module ModeloQytetet
       return temporal
     end
     
-    def FiltrarTipo(tipo)
+    def self.FiltrarTipo(tipo)
       temporal = Array.new
       for i in 0...@@juego.mazo.size
         if @@juego.mazo[i].tipo == tipo
@@ -66,7 +66,6 @@ module ModeloQytetet
     
     
   end
-  x = PruebaQytetet.new
-  x.main
+  PruebaQytetet.main
   
 end
