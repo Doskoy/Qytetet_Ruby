@@ -11,8 +11,6 @@ module ModeloQytetet
     include Singleton
     attr_reader :mazo, :max_jugadores, :num_sorpresas, :num_casillas, :precio_libertad, :saldo_salida, :cartaActual, :dado, :jugadorActual, :jugadores, :tablero, :metodosalircarcel
     
-    private :encarcelarJugador, :inicializarCartasSorpresa, :inicializarJugadores, :inicializarTablero, :salidaJugadores, :setCartaActual
-    
     def initialize
         @max_jugadores = 4
         @num_sorpresas = 10
@@ -149,5 +147,7 @@ module ModeloQytetet
     def venderPropiedad(numeroCasilla)
       raise NotImplementedError
     end
+    
+    private :encarcelarJugador, :inicializarCartasSorpresa, :inicializarJugadores, :inicializarTablero, :salidaJugadores, :setCartaActual
   end
 end

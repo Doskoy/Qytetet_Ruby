@@ -3,7 +3,7 @@ require_relative "Qytetet"
 require_relative "tablero"
 module ModeloQytetet
   class PruebaQytetet
-    @@juego = Qytetet.new
+    @@juego = Qytetet.instance
     attr_accessor :tablero
     def initialize
       @tablero = Tablero.new

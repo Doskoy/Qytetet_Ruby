@@ -49,15 +49,15 @@ module ModeloQytetet
     end
     
     def esCasillaCarcel(numeroCasilla)
-      
+      raise NotImplementedError
     end
     
     def obtenerCasillaFinal(casilla, desplazamiento)
-      
+      raise NotImplementedError
     end
     
     def obenerCasillaNumero(numeroCasilla)
-      
+      raise NotImplementedError
     end
     
     public

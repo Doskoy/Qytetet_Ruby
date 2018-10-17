@@ -4,7 +4,7 @@ require_relative "titulo_propiedad"
 module ModeloQytetet
   class Casilla
     attr_reader :numeroCasilla, :coste, :tipo
-    attr_acessor :titulo
+    attr_accessor :titulo
     def initialize(tipo, coste, numeroCasilla, titulo)
       @tipo = tipo
       @coste = coste
