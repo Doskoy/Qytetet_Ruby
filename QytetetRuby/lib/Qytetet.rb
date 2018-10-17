@@ -9,7 +9,7 @@ require "singleton"
 module ModeloQytetet
   class Qytetet
     include Singleton
-    attr_reader :mazo, :max_jugadores, :num_sorpresas, :num_casillas, :precio_libertad, :saldo_salida, :cartaActual, :dado, :jugadorActual, :jugadores, :tablero, :metodosalircarcel
+    attr_reader :mazo, :cartaActual, :dado, :jugadorActual, :jugadores, :tablero, :metodosalircarcel
     
     def initialize
         @@max_jugadores = 4
