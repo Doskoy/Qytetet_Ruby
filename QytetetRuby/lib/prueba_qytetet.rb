@@ -12,7 +12,7 @@ module ModeloQytetet
     def main
       #puts "ValorMayorQueCero #{ValorMayorQueCero().join(",")} "
       #puts "CartasIrA #{CartasIrA().join(",")}"
-      #puts "Cartas SalirCarcel #{FiltrarTipo(TipoSorpresa::SALIRCARCEL).join(",")}"
+      puts "Cartas SalirCarcel #{FiltrarTipo(TipoSorpresa::SALIRCARCEL).join(",")}"
       
       puts @tablero
     end
