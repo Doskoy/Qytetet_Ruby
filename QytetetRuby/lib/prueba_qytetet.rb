@@ -29,7 +29,7 @@ module ModeloQytetet
       puts "Introduzca número de jugadores: "
       n=gets.chomp.to_i
       
-      if n <= Qytetet.getMaxJugadores and n >= 2   
+      if n <= Qytetet.getMaxJugadores and n >= 2
         for i in 0...n
           puts "Escribe el nombre del jugador #{i}: "
           cadena = gets
