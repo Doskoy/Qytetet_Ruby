@@ -24,10 +24,17 @@ module ModeloQytetet
     
     def self.getNombreJugadores
       nombres = Array.new
-      for i in 0...Qytetet.getMaxJugadores
-        puts "Escribe el nombre del jugador #{i}: "
-        cadena = gets
-        nombres << cadena
+      n = 0
+      
+      puts "Introduzca número de jugadores: "
+      n=gets.chomp.to_i
+      
+      if n <= Qytetet.getMaxJugadores and n >= 2   
+        for i in 0...n
+          puts "Escribe el nombre del jugador #{i}: "
+          cadena = gets
+          nombres << cadena
+        end
       end
       nombres
     end
