@@ -4,12 +4,13 @@ require_relative "TipoSorpresa"
 require_relative "tablero"
 require_relative "casilla"
 require_relative "jugador"
+require_relative "dado"
 require "singleton"
 
 module ModeloQytetet
   class Qytetet
     include Singleton
-    attr_reader :mazo, :cartaActual, :dado, :jugadorActual, :jugadores, :tablero, :metodosalircarcel
+    attr_reader :mazo, :cartaActual, :jugadorActual, :jugadores, :tablero, :metodosalircarcel, :dado
     
     def initialize
         @@max_jugadores = 4
@@ -17,6 +18,7 @@ module ModeloQytetet
         @@num_casillas = 20
         @@precio_libertad = 200
         @@saldo_salida = 1000
+        @dado = Dado.instance
     end
     
     def self.getMaxJugadores
