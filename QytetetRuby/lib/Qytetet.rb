@@ -88,10 +88,9 @@ module ModeloQytetet
     
     def inicializarJugadores(nombres)
       @jugadores = Array.new
-      @jugadores << Jugador.new(nombres[0])
-      @jugadores << Jugador.new(nombres[1])
-      @jugadores << Jugador.new(nombres[2])
-      @jugadores << Jugador.new(nombres[3])
+      for i in 0...nombres.size
+        @jugadores << Jugador.new(nombres[i])
+      end
     end
     
     def inicializarTablero
