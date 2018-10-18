@@ -111,7 +111,7 @@ module ModeloQytetet
       
       
       def to_s
-        texto = "Nombre propiedad: #{@nombre}\nPropietario: #{@propietarioa}\nHipotecada: "
+        texto = "Nombre propiedad: #{@nombre}\nPropietario: #{@propietario}\nHipotecada: "
         
         if@hipotecada == true
           texto << "Sí"
