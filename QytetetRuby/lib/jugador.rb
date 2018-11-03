@@ -134,10 +134,10 @@ module ModeloQytetet
   
     def obtenerCapital()
       capital = @saldo
-      for i in 0...propiedades.size
-        capital = capital + propiedades[i].precioCompra + (propiedades[i].numCasas + propiedades[i].numHoteles) + propiedades[i].precioEdificar
-        if (propiedades[i].hipotecada == true)
-          capital = capital - propiedades[i].hipotecaBase
+      for i in 0...@propiedades.size
+        capital = capital + @propiedades[i].precioCompra + (@propiedades[i].numCasas + @propiedades[i].numHoteles) + @propiedades[i].precioEdificar
+        if (@propiedades[i].hipotecada == true)
+          capital = capital - @propiedades[i].hipotecaBase
         end
       end
       
