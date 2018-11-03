@@ -92,7 +92,8 @@ module ModeloQytetet
     end
   
     def irACarcel(casilla)
-      raise NotImplementedError
+      @casillaActual = casilla
+      @encarcelado = true
     end
   
     def modificarSaldo(cantidad)

@@ -149,7 +149,15 @@ module ModeloQytetet
     end
     
     def encarcelarJugador
-      raise NotImplementedError
+      unless @jugadorActual.tengoCartaLibertad
+        casillaCarcel = @tablero.carcel
+        @jugadorActual.irACarcel(casillaCarcel)
+        @estado = EstadoJuego::JA_ENCARCELADO
+      else
+        carta = @jugadorActual.devolverCartaLibertad
+        @mazo << carta
+        @estado = EstadoJuego::JA_PUEDEGESTIONAR
+      end  
     end
     
     def getValorDado
