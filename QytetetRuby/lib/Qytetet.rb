@@ -315,7 +315,7 @@ module ModeloQytetet
       @iterador += 1
       @iterador = @iterador%@jugadores.length
       
-      @jugadorActual = @jugadores.at(iterador)
+      @jugadorActual = @jugadores.at(@iterador)
       if (@jugadorActual.encarcelado)
         @estado = EstadoJuego::JA_ENCARCELADOCONOPCIONDELIBERTAD
       else
