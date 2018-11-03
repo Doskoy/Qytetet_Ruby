@@ -228,7 +228,20 @@ module ModeloQytetet
     end
     
     def mover(numCasillaDestino)
-      raise NotImplementedError
+      casillaInicial = @jugadorActual.casillaActual
+      casillaFinal = @tablero.obtenerCasillaNumero(numCasillaDestino)
+      @jugadorActual.casillaActual = casillaFinal
+      
+      if numCasillaDestino < casillaInicial.numeroCasilla
+        @jugadorActual.modificarSaldo(@@saldo_salida)        
+      end
+      
+      if casillaFinal.soyEdificable
+        self.actuarSiEnCasillaEdificable
+      
+      else
+        self.actuarSiEnCasillaNoEdificable
+      end
     end
     
     def obtenerCasillaJugadorActual()
