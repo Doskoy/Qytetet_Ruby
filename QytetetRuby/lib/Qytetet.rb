@@ -186,13 +186,15 @@ module ModeloQytetet
       @mazo << Sorpresa.new("Tus edificios son muy bonitos. Recibes un premio de arquitectura.", 25, TipoSorpresa::PORCASAHOTEL)
       @mazo << Sorpresa.new("Los demás se enteran de que tienes cuentas en el extrangero. Mejor sobornarlos para que no hablen, ¿no?", -200, TipoSorpresa::PORJUGADOR)
       @mazo << Sorpresa.new("Parece ser que es tu cumpleaños o tal vez los estés engañando, maldito mentiroso, recibes dinero de los demás como regalo.", 200, TipoSorpresa::PORJUGADOR)
-      @mazo << Sorpresa.new("Tienes contactos en el gobierno que logran sacarte de la cárcel.", 0, TipoSorpresa::SALIRCARCEL)    
+      @mazo << Sorpresa.new("Tienes contactos en el gobierno que logran sacarte de la cárcel.", 0, TipoSorpresa::SALIRCARCEL)
+      @mazo.sort_by{rand}
     end
     
     def inicializarJuego(nombres)
       inicializarJugadores(nombres)
       inicializarTablero
       inicializarCartasSorpresa
+      salidaJugadores
     end
     
     def inicializarJugadores(nombres)
@@ -229,7 +231,7 @@ module ModeloQytetet
     end
     
     def jugar
-      resultadoDado = tirarDado()
+      resultadoDado = tirarDado
       casillaFinal = @tablero.obtenerCasillaFinal(jugadorActual.casillaActual, resultadoDado)
       mover(casillaFinal)
     end
@@ -251,7 +253,7 @@ module ModeloQytetet
       end
     end
     
-    def obtenerCasillaJugadorActual()
+    def obtenerCasillaJugadorActual
       raise NotImplementedError
     end
     
@@ -301,7 +303,7 @@ module ModeloQytetet
     
     def salidaJugadores
       for jugador in @jugadores do
-        jugador.casillaActual = 0
+        jugador.casillaActual = @tablero.obtenerCasillaNumero(0)
       end
       turno = Random.new
       turno.rand(0...@jugadores.length)
