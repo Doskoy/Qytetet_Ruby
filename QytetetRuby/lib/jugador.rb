@@ -108,8 +108,9 @@ module ModeloQytetet
       raise NotImplementedError
    end
   
-    def pagarAlquiler()
-      raise NotImplementedError
+    def pagarAlquiler
+      costeAlquiler = @casillaActual.pagarAlquiler
+      self.modificarSaldo(-costeAlquiler)
     end
 
     def pagarImpuesto()

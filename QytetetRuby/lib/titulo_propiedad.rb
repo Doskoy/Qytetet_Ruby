@@ -58,8 +58,10 @@ module ModeloQytetet
         raise NotImplementedError
       end
       
-      def calcularImporteAlquiler()
-        raise NotImplementedError
+      def calcularImporteAlquiler
+        costeAlquiler = @alquilerBase + (@numCasas * 0.5 + @numHoteles * 2).to_i
+        
+        costeAlquiler
       end
       
       def calcularPrecioVenta()
@@ -91,7 +93,10 @@ module ModeloQytetet
       end
       
       def pagarAlquiler()
-        raise NotImplementedError
+        costeAlquiler = self.calcularCosteAlquiler
+        @propietario.modificarSaldo(costeAlquiler)
+        
+        costeAlquiler
       end
       
       def propietarioEncarcelado()

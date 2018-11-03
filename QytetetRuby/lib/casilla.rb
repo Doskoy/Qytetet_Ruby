@@ -51,7 +51,9 @@ module ModeloQytetet
     end
     
     def pagarAlquiler
-      raise NotImplementedError
+      costeAlquiler = @titulo.pagarAlquiler
+      
+      costeAlquiler
     end
     
     def propietarioEncarcelado
