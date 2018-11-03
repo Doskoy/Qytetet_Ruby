@@ -10,7 +10,7 @@ module ModeloQytetet
         @numHoteles = 0
         @numCasas = 0
         @nombre = nombre
-        @propietario = ""
+        @propietario = nil
         
         if precioCompra >= 500 && precioCompra <= 1000
           @precioCompra = precioCompra
@@ -95,12 +95,11 @@ module ModeloQytetet
       def pagarAlquiler()
         costeAlquiler = self.calcularCosteAlquiler
         @propietario.modificarSaldo(costeAlquiler)
-        
         costeAlquiler
       end
       
       def propietarioEncarcelado()
-        raise NotImplementedError
+        @propietario.encarcelado
       end
       
       def setPropietario(propietario)  
@@ -108,7 +107,11 @@ module ModeloQytetet
       end
       
       def tengoPropietario()
-        raise NotImplementedError
+        if(@propietario == nil)
+          return false
+        else
+          return true
+        end
       end
       
       def to_s

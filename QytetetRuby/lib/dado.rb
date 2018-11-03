@@ -10,7 +10,9 @@ module ModeloQytetet
       end
       
       def tirar
-        raise NotImplementedError        
+        tirada.Random.new
+        @valor = tirada.rand(1..6)
+        return @valor
       end
   end
 end

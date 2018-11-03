@@ -10,7 +10,7 @@ require "singleton"
 module ModeloQytetet
   class Qytetet
     include Singleton
-    attr_reader :mazo, :cartaActual, :jugadorActual, :jugadores, :tablero, :metodosalircarcel, :dado
+    attr_reader :mazo, :cartaActual, :jugadorActual, :jugadores, :tablero, :metodosalircarcel, :dado, :estado
     
     def initialize
         @@max_jugadores = 4
@@ -22,6 +22,8 @@ module ModeloQytetet
         @estado = nil
         @cartaActual = nil
         @metodosalircarcel = nil
+        @iterador = 0
+
     end
     
     def self.getMaxJugadores
@@ -162,7 +164,7 @@ module ModeloQytetet
     end
     
     def getValorDado
-       raise NotImplementedError
+       @dado.valor
     end
     
     def hipotecarPropiedad(numeroCasilla)
@@ -224,7 +226,9 @@ module ModeloQytetet
     end
     
     def jugar
-      raise NotImplementedError
+      resultadoDado = tirarDado()
+      casillaFinal = @tablero.obtenerCasillaFinal(jugadorActual.casillaActual, resultadoDado)
+      mover(casillaFinal)
     end
     
     def mover(numCasillaDestino)
@@ -253,23 +257,53 @@ module ModeloQytetet
     end
     
     def obtenerPropiedadesJugador
-      raise NotImplementedError
+      propiedadesJA = Array.new
+      casillas = Array.new
+      ncasillas = Array.new
+      propiedadesJA = @jugadorActual.propiedades
+      casillas = @tablero.casillas
+      for propiedad in propiedadesJA do
+        for casilla in casillas do
+          if (casilla.titulo == propiedad.titulo)
+            ncasillas << casilla.numeroCasilla
+          end
+        end
+      end
+      return ncasillas
     end
     
     def obtenerPropiedadesJugadorSegunEstadoHipoteca(estadoHipoteca)
-      raise NotImplementedError
+      propiedadesJA = Array.new
+      casillas = Array.new
+      casillasHip = Array.new
+      propiedadesJA = @jugadorActual.propiedades
+      casillas = @tablero.casillas
+      for propiedad in propiedadesJA do
+        for casilla in casillas do
+          if (casilla.titulo == propiedad.titulo and propiedad.titulo.hipotecada == estadoHipoteca)
+            casillasHip << casilla.numeroCasilla
+          end
+        end
+      end
+      return ncasillas
     end
     
     def obtenerRanking
       raise NotImplementedError
     end
     
-    def obtenerSaldoJugadorActual
-      raise NotImplementedError
+    def ObtenerSaldoJugadorActual
+      @jugadorActual.saldo
     end
     
     def salidaJugadores
-      raise NotImplementedError
+      for jugador in @jugadores do
+        jugador.casillaActual = 0
+      end
+      turno = Random.new
+      turno.rand(0...@jugadores.length)
+      @jugadorActual = @jugadores.at(turno)
+      @estado = EstadoJuego::JA_PREPARADO
     end
     
     def setCartaActual(cartaActual)
@@ -277,11 +311,19 @@ module ModeloQytetet
     end
     
     def siguienteJugador
-      raise NotImplementedError
+      @iterador += 1
+      @iterador = @iterador%@jugadores.length
+      
+      @jugadorActual = @jugadores.at(iterador)
+      if (@jugadorActual.encarcelado)
+        @estado = EstadoJuego::JA_ENCARCELADOCONOPCIONDELIBERTAD
+      else
+        @estado = EstadoJuego::JA_PREPARADO
+      end
     end
     
     def tirarDado
-      raise NotImplementedError
+      @dado.tirar
     end
     
     def venderPropiedad(numeroCasilla)

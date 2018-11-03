@@ -57,15 +57,19 @@ module ModeloQytetet
     end
     
     def propietarioEncarcelado
-      raise NotImplementedError
+      @titulo.propietarioEncarcelado
     end
     
     def soyEdificable
-      raise NotImplementedError
+      edificable = false
+      if(@tipo == TipoCasilla::CALLE)
+        edificable = true
+      end
+      return edificable
     end
     
     def tengoPropietario
-      raise NotImplementedError
+      @titulo.tengoPropietario
     end
     
     def to_s

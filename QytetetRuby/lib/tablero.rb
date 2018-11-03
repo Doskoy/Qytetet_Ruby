@@ -48,17 +48,31 @@ module ModeloQytetet
       @carcel = @casillas[5]
     end
     
+    public
+    
     def esCasillaCarcel(numeroCasilla)
-      raise NotImplementedError
+      if (numeroCasilla ==  @carcel.numeroCasilla)
+        return true
+      else
+        return false
+      end
     end
     
     def obtenerCasillaFinal(casilla, desplazamiento)
-      raise NotImplementedError
+      pos = casilla.numeroCasilla
+      pos += desplazamiento
+      pos = posicion%(casillas.size())
+      return casilla[pos]
     end
     
     def obtenerCasillaNumero(numeroCasilla)
-      raise NotImplementedError
+      if(numeroCasilla < 0 || numeroCasilla > @casillas.size())
+        return nil
+      else
+        return @casillas[numeroCasilla]
+      end
     end
+    
     
     public
     def to_s

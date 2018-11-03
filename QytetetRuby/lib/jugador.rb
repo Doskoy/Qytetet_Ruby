@@ -40,10 +40,6 @@ module ModeloQytetet
       comprado
     end
   
-    def cuantasCasasHotelesTengo
-      raise NotImplementedError
-    end
-  
     def deboPagarAlquiler
       titulo = @casillaActual.titulo
       esDeMiPropiedad = esDeMiPropiedad(titulo)
@@ -59,12 +55,25 @@ module ModeloQytetet
           end
         end
       end
-      
+    
       return !esDeMiPropiedad && tienePropietario && !encarcelado && !estaHipotecada
+    end
+
+
+    def cuantasCasasHotelesTengo()
+      numpropiedades = 0
+      
+      for i in 0...@propiedades.size
+        numpropiedades = numpropiedades + @propiedades[i].numCasas + @propiedades[i].numHoteles
+      end
+      return numpropiedades
     end
   
     def devolverCartaLibertad()
-      raise NotImplementedError
+      carta = @cartaLibertad
+      @cartaLibertad = nil
+      return carta
+
     end
   
     def edificarCasa(titulo)
@@ -95,7 +104,13 @@ module ModeloQytetet
     end
   
     def esDeMiPropiedad(titulo) 
-      raise NotImplementedError
+      for i in 0...@propiedades.size
+        if (titulo == @propiedades[i])
+          return true
+        else
+          return false
+        end
+      end
     end
   
     def estoyEnCalleLibre()
@@ -112,16 +127,31 @@ module ModeloQytetet
     end
   
     def modificarSaldo(cantidad)
-      raise NotImplementedError
+      @saldo += cantidad
+      return @saldo
     end
   
     def obtenerCapital()
-      raise NotImplementedError
+      capital = @saldo
+      for i in 0...propiedades.size
+        capital = capital + propiedades[i].precioCompra + (propiedades[i].numCasas + propiedades[i].numHoteles) + propiedades[i].precioEdificar
+        if (propiedades[i].hipotecada == true)
+          capital = capital - propiedades[i].hipotecaBase
+        end
+      end
+      
     end
   
     def obtenerPropiedades(hipotecada) 
-      raise NotImplementedError
-   end
+      tp = array.new
+      for i in 0...@propiedades.size
+        if (@propiedades[i].hipotecada == hipotecada)
+          tp << @propiedades[i]
+        end
+      end
+      return tp
+    
+    end
   
     def pagarAlquiler
       costeAlquiler = @casillaActual.pagarAlquiler
@@ -129,7 +159,7 @@ module ModeloQytetet
     end
 
     def pagarImpuesto()
-      raise NotImplementedError
+      @saldo = @saldo - @casillaActual.coste
     end
   
     def pagarLibertad(cantidad)
@@ -142,11 +172,15 @@ module ModeloQytetet
     end
   
     def tengoCartaLibertad()
-      raise NotImplementedError
+      return @cartaLibertad
     end
   
     def tengoSaldo(cantidad)
-      raise NotImplementedError
+      if (@saldo >= cantidad)
+        return true
+      else
+        return false
+      end
     end
   
     def venderPropiedad(casilla)
@@ -154,7 +188,7 @@ module ModeloQytetet
     end
   
     def to_s
-      texto = "\nNombre: #{@nombre}\nSaldo: #{@saldo}\nEncarcelado: #{@encarcelado}\nEstá en la casilla: #{@casillaActual}\nCarta liberad: #{@cartaLibertad}\nPropiedades: \n"
+      texto = "\nNombre: #{@nombre}\nSaldo: #{@saldo}\nCapital: #{obtenerCapital()}\nEncarcelado: #{@encarcelado}\nEstá en la casilla: #{@casillaActual}\nCarta liberad: #{@cartaLibertad}\nPropiedades: \n"
       
       for i in 0...@propiedades.size
         texto += "#{@propiedades[i]}\n"
@@ -163,3 +197,4 @@ module ModeloQytetet
     end
   end
 end
+
