@@ -118,7 +118,7 @@ module ModeloQytetet
     end
   
     def hipotecarPropiedad(titulo)
-      raise NotImplementedError
+      costeHipoteca = titulo.hipotecar
     end
   
     def irACarcel(casilla)

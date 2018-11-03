@@ -50,12 +50,12 @@ module ModeloQytetet
         end
       end
       
-      def calcularCosteCancelar() 
+      def calcularCosteCancelar
         raise NotImplementedError
       end
       
-      def calcularCosteHipotecar()
-        raise NotImplementedError
+      def calcularCosteHipotecar
+        return (@hipotecaBase + @numCasas * 0.5 * @hipotecaBase + @numHoteles * @hipotecaBase).to_i
       end
       
       def calcularImporteAlquiler
@@ -64,7 +64,7 @@ module ModeloQytetet
         costeAlquiler
       end
       
-      def calcularPrecioVenta()
+      def calcularPrecioVenta
         raise NotImplementedError
       end
       
@@ -89,7 +89,9 @@ module ModeloQytetet
       end
       
       def hipotecar()
-        raise NotImplementedError
+        @hipotecada = true
+        costeHipoteca = calcularCosteHipotecar
+        costeHipoteca
       end
       
       def pagarAlquiler()

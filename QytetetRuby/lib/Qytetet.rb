@@ -168,7 +168,10 @@ module ModeloQytetet
     end
     
     def hipotecarPropiedad(numeroCasilla)
-      raise NotImplementedError
+      casilla = @tablero.obtenerCasillaNumero(numeroCasilla)
+      titulo = casilla.titulo
+      @jugadorActual.hipotecarPropiedad(titulo)
+      @estado = EstadoJuego::JA_PUEDEGESTIONAR
     end
     
     def inicializarCartasSorpresa
