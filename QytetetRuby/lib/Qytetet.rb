@@ -264,7 +264,7 @@ module ModeloQytetet
       raise NotImplementedError
     end
     
-    def ObtenerSaldoJugadorActual
+    def obtenerSaldoJugadorActual
       raise NotImplementedError
     end
     

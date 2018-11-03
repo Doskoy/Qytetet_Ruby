@@ -45,7 +45,22 @@ module ModeloQytetet
     end
   
     def deboPagarAlquiler
-      raise NotImplementedError
+      titulo = @casillaActual.titulo
+      esDeMiPropiedad = esDeMiPropiedad(titulo)
+      tienePropietario = false
+      encarcelado = true
+      estaHipotecada = true
+      if !esDeMiPropiedad
+        tienePropietario = titulo.tengoPropietario
+        if tienePropietario
+          encarcelado = titulo.propietarioEncarcelado
+          if !encarcelado
+            estaHipotecada = titulo.hipotecada
+          end
+        end
+      end
+      
+      return !esDeMiPropiedad && tienePropietario && !encarcelado && !estaHipotecada
     end
   
     def devolverCartaLibertad()
