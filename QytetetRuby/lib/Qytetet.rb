@@ -311,10 +311,6 @@ module ModeloQytetet
       @estado = EstadoJuego::JA_PREPARADO
     end
     
-    def setCartaActual(cartaActual)
-      raise NotImplementedError
-    end
-    
     def siguienteJugador
       @iterador += 1
       @iterador = @iterador%@jugadores.length
