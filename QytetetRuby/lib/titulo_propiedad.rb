@@ -75,7 +75,7 @@ module ModeloQytetet
       end
       
       def edificarCasa()
-        raise NotImplementedError
+        @numCasas = @numCasas + 1
       end
       
       def edificarHotel()
@@ -105,10 +105,6 @@ module ModeloQytetet
       def tengoPropietario()
         raise NotImplementedError
       end
-      
-      
-      
-      
       
       def to_s
         texto = "Nombre propiedad: #{@nombre}\nPropietario: #{@propietario}\nHipotecada: "

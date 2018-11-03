@@ -4,8 +4,8 @@ require_relative "tablero"
 module ModeloQytetet
   class Jugador
   
-    attr_reader :nombre, :propiedades, :saldo
-    attr_accessor :cartaLibertad, :casillaActual, :encarcelado
+    attr_reader :nombre, :propiedades, :saldo, :cartaLibertad
+    attr_accessor :casillaActual, :encarcelado
   
     def initialize(nombre)
       @encarcelado = false;
@@ -15,20 +15,36 @@ module ModeloQytetet
       @casillaActual = nil;
       @propiedades = Array.new
     end
+    
+    def setCartaLibertad(cartaLibertad)
+      if cartaLibertad.tipo == TipoSorpresa::SALIRCARCEL
+        @cartaLibertad = cartaLibertad
+      end
+    end
   
     def cancelarHipoteca(titulo)
       raise NotImplementedError
     end
   
-    def comprarTituloPropiedad()
+    def comprarTituloPropiedad
+      comprado = false
+      costeCompra = @casillaActual.coste
+      
+      if costeCompra < @saldo
+        comprado = true
+        @casillaActual.titulo.propietario = self
+        @propiedades << @casillaActual.titulo
+        self.modificarSaldo(-costeCompra)
+      end
+      
+      comprado
+    end
+  
+    def cuantasCasasHotelesTengo
       raise NotImplementedError
     end
   
-    def cuantasCasasHotelesTengo()
-      raise NotImplementedError
-    end
-  
-    def deboPagarAlquiler()
+    def deboPagarAlquiler
       raise NotImplementedError
     end
   
@@ -36,8 +52,23 @@ module ModeloQytetet
       raise NotImplementedError
     end
   
-    def edificarCasa()
-      raise NotImplementedError
+    def edificarCasa(titulo)
+      edificada = false
+      
+      numCasas = titulo.numCasas
+      
+      if numCasas < 4
+        costeEdificarCasa = titulo.precioEdificar
+        tengoSaldo = self.tengoSaldo(costeEdificarCasa)
+        
+        if(tengoSaldo)
+          titulo.edificarCasa
+          self.modificarSaldo(-costeEdificarCasa)
+          edificada = true
+        end
+      end
+      
+      edificada
     end
   
     def edificarHotel()

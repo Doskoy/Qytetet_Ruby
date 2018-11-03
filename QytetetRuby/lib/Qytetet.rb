@@ -19,6 +19,8 @@ module ModeloQytetet
         @@precio_libertad = 200
         @@saldo_salida = 1000
         @dado = Dado.instance
+        @estado = nil
+        @cartaActual = nil
     end
     
     def self.getMaxJugadores
@@ -26,15 +28,94 @@ module ModeloQytetet
     end
     
     def actuarSiEnCasillaEdificable
-      raise NotImplementedError
+      deboPagar = @jugadorActual.deboPagarAlquiler
+      
+      if deboPagar
+        @jugadorActual.pagarAlquiler
+        
+        if @jugadorActual.saldo <= 0
+          @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
+        end
+      end
+      
+      casilla = @jugadorActual.casillaActual
+      
+      tengoPropietario = casilla.tengoPropietario
+      
+      if @estado != EstadoJuego::ALGUNJUGADORENBANCAROTA
+        if tengoPropietario
+          @estado = EstadoJuego::JA_PUEDEGESTIONAR
+        else
+          @estado = EstadoJuego::JA_PUEDECOMPRARGESTIONAR
+        end
+      end
     end
     
     def actuarSiEnCasillaNoEdificable
-      raise NotImplementedError
+      @estado = EstadoJuego::JA_PUEDEGESTIONAR
+      
+      casillaActual = @jugadorActual.casillaActual
+      
+      if casillaActual.tipo == TipoCasilla::IMPUESTO
+        @jugadorActual.pagarImpuesto
+      
+      elsif casillaActual.tipo == TipoCasilla::JUEZ
+        self.encarcelarJugador
+        
+      elsif casillaActual.tipo == TipoCasilla::SORPRESA
+        @cartaActual = nil
+        @estado = EstadoJuego::JA_CONSORPRESA
+      end
     end
     
     def aplicarSorpresa
-      raise NotImplementedError
+      @estado = EstadoJuego::PUEDOGESTIONAR
+      
+      if @cartaActual.tipo == TipoSorpresa::SALIRCARCEL
+        @jugadorActual.setCartaLibertad(@cartaActual)
+        
+      elsif @cartaActual.tipo == TipoSorpresa::PAGARCOBRAR
+        @jugadorActual.modificarSaldo(@cartaActual.valor)
+        if @jugadorActual.saldo < 0
+          @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
+        end
+        
+      elsif @cartaActual.tipo == TipoSorpresa::IRACASILLA
+        valor = @cartaActual.valor
+        casillaCarcel = @tablero.esCasillaCarcel(valor)
+        if casillaCarcel
+          self.encarcelarJugador
+        else
+          self.mover(valor)
+        end
+        
+      elsif @cartaActual.tipo == TipoSorpresa::PORCASAHOTEL
+        cantidad = @cartaActual.valor
+        numeroTotal = @jugadorActual.cuantasCasasHotelesTengo
+        @jugadorActual.modificarSaldo(cantidad*numeroTotal)
+        
+        if @jugadorActual.saldo < 0
+          @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
+        end
+        
+      elsif @cartaActual.tipo == TipoSorpresa::PORJUGADOR
+        for i in 0...@jugadores.size
+          jugador = @jugadores[i]
+          
+          if jugador != @jugadorActual
+            jugador.modificarSaldo(@cartaActual.valor)
+            if jugador.saldo < 0
+              @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
+            end
+            
+            @jugadorActual.modificarSaldo(-@cartaActual.valor)
+            
+            if @jugadorActual.saldo < 0
+              @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
+            end
+          end
+        end
+      end
     end
     
     def cancelarHipoteca(numeroCasilla)
@@ -42,11 +123,25 @@ module ModeloQytetet
     end
     
     def comprarTituloPropiedad
-      raise NotImplementedError
+      comprado = @jugadorActual.comprarTituloPropiedad
+      
+      if comprado
+        @estado = EstadoJuego::JA_PUEDEGESTIONAR
+      end
+      
+      comprado
     end
     
     def edificarCasa(numeroCasilla)
-      raise NotImplementedError
+      casilla = @tablero.obtenerCasillaNumero(numeroCasilla)
+      titulo = casilla.titulo
+      edificada = @jugadorActual.edificarCasa(titulo)
+      
+      if edificada
+        @estado = EstadoJuego::JA_PUEDEGESTIONAR
+      end
+      
+      edificada
     end
     
     def edifarHotel(numeroCasilla)
