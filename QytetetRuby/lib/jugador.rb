@@ -117,7 +117,12 @@ module ModeloQytetet
     end
   
     def pagarLibertad(cantidad)
-      raise NotImplementedError
+      tengoSaldo = self.tengoSaldo(cantidad)
+      
+      if tengoSaldo
+        @encarcelado = false
+        self.modificarSaldo(-cantidad)
+      end
     end
   
     def tengoCartaLibertad()

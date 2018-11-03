@@ -21,6 +21,7 @@ module ModeloQytetet
         @dado = Dado.instance
         @estado = nil
         @cartaActual = nil
+        @metodosalircarcel = nil
     end
     
     def self.getMaxJugadores
@@ -201,7 +202,25 @@ module ModeloQytetet
     end
     
     def intentarSalirCarcel(metodo)
-      raise NotImplementedError
+      if metodo == MetodoSalirCarcel::TIRANDODADO
+        resultado = self.tirarDado
+        if resultado >= 5
+          @jugadorActual.encarcelado = false
+        end
+        
+      elsif metodo == MetodoSalirCarcel::PAGANDOLIBERTAD
+        @jugadorActual.pagarLibertad(@@precio_libertad)
+      end
+      
+      libre = @jugadorActual.encarcelado
+      
+      if libre
+        @estado = EstadoJuego::JA_ENCARCELADO
+      else
+        @estado = EstadoJuego::JA_PREPARADO
+      end
+      
+      libre
     end
     
     def jugar
