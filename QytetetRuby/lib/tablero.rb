@@ -61,7 +61,7 @@ module ModeloQytetet
     def obtenerCasillaFinal(casilla, desplazamiento)
       pos = casilla.numeroCasilla
       pos += desplazamiento
-      pos = posicion%(casillas.size())
+      pos = pos%(@casillas.size())
       return casilla[pos]
     end
     

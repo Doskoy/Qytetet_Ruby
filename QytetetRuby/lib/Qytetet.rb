@@ -232,12 +232,12 @@ module ModeloQytetet
     
     def jugar
       resultadoDado = tirarDado
-      casillaFinal = @tablero.obtenerCasillaFinal(jugadorActual.casillaActual, resultadoDado)
+      casillaFinal = @tablero.obtenerCasillaFinal(obtenerCasillaJugadorActual, resultadoDado)
       mover(casillaFinal)
     end
     
     def mover(numCasillaDestino)
-      casillaInicial = @jugadorActual.casillaActual
+      casillaInicial = obtenerCasillaJugadorActual
       casillaFinal = @tablero.obtenerCasillaNumero(numCasillaDestino)
       @jugadorActual.casillaActual = casillaFinal
       
@@ -254,7 +254,7 @@ module ModeloQytetet
     end
     
     def obtenerCasillaJugadorActual
-      raise NotImplementedError
+      @jugadorActual.casillaActual
     end
     
     def obtenerCasillasTablero
