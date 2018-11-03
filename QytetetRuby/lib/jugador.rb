@@ -100,7 +100,8 @@ module ModeloQytetet
     end
   
     def eliminarDeMisPropiedades(titulo)
-      raise NotImplementedError
+      @propiedades.delete(titulo)
+      titulo.propietario = nil
     end
   
     def esDeMiPropiedad(titulo) 
@@ -184,7 +185,10 @@ module ModeloQytetet
     end
   
     def venderPropiedad(casilla)
-      raise NotImplementedError
+      titulo = casilla.titulo
+      eliminarDeMisPropiedades(titulo)
+      precioVenta = titulo.calcularPrecioVenta
+      modificarSaldo(precioVenta)
     end
   
     def to_s

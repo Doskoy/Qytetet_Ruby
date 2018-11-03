@@ -65,7 +65,7 @@ module ModeloQytetet
       end
       
       def calcularPrecioVenta
-        raise NotImplementedError
+        return (@precioCompra + ( @numCasas + @numHoteles ) * @precioEdificar * @factorRevalorizacion).to_i
       end
       
       def cancelarHipoteca

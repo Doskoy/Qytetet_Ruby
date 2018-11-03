@@ -332,7 +332,9 @@ module ModeloQytetet
     end
     
     def venderPropiedad(numeroCasilla)
-      raise NotImplementedError
+      casilla = @tablero.obtenerCasillaNumero(numeroCasilla)
+      @jugadorActual.venderPropiedad(casilla)
+      @estado = EstadoJuego::JA_PUEDEGESTIONAR
     end
     
     private :encarcelarJugador, :inicializarCartasSorpresa, :inicializarJugadores, :inicializarTablero, :salidaJugadores, :setCartaActual
