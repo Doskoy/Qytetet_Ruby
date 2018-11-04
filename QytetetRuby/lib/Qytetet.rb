@@ -127,11 +127,15 @@ module ModeloQytetet
       titulo = casilla.titulo
       esDeMiPropiedad = @jugadorActual.esDeMiPropiedad(titulo)
       hipotecada = titulo.hipotecada
-      cancelarHipoteca = false
+      cancelar = false
 
       if esEdificable && esDeMiPropiedad && hipotecada
-        cancelarHipoteca = @jugadorActual.cancelarHipoteca(titulo)
+        cancelar = @jugadorActual.cancelarHipoteca(titulo)
       end
+      
+      @estado = EstadoJuego::JA_PUEDEGESTIONAR
+      
+      cancelar
     end
     
     def comprarTituloPropiedad
