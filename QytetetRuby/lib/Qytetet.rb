@@ -307,7 +307,7 @@ module ModeloQytetet
           end
         end
       end
-      return ncasillas
+      return casillasHip
     end
     
     def obtenerRanking

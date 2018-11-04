@@ -43,7 +43,7 @@ module ModeloQytetet
     private_class_method :new
     
     def asignarPropietario(jugador)
-      raise NotImplementedError
+      @titulo.propietario = jugador
     end
     
     def pagarAlquiler
