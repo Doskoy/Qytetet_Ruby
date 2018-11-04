@@ -81,11 +81,7 @@ module ModeloQytetet
       end
       
       def edificarHotel()
-        raise NotImplementedError
-      end
-      
-      def getPropietario()
-        raise NotImplementedError
+        @numHoteles = @numHoteles + 1
       end
       
       def hipotecar()

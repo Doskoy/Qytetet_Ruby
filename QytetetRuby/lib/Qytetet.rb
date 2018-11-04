@@ -148,7 +148,15 @@ module ModeloQytetet
     end
     
     def edifarHotel(numeroCasilla)
-      raise NotImplementedError
+      casilla = @tablero.obtenerCasillaNumero(numeroCasilla)
+      titulo = casilla.titulo
+      edificado = @jugadorActual.edificarHotel(titulo)
+      
+      if edificado
+        @estado = EstadoJuego::JA_PUEDEGESTIONAR
+      end
+      
+      edificado
     end
     
     def encarcelarJugador
@@ -255,10 +263,6 @@ module ModeloQytetet
     
     def obtenerCasillaJugadorActual
       @jugadorActual.casillaActual
-    end
-    
-    def obtenerCasillasTablero
-      raise NotImplementedError
     end
     
     def obtenerPropiedadesJugador

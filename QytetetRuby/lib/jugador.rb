@@ -81,7 +81,7 @@ module ModeloQytetet
       
       numCasas = titulo.numCasas
       
-      if numCasas < 4
+      if numCasas <= 4
         costeEdificarCasa = titulo.precioEdificar
         tengoSaldo = self.tengoSaldo(costeEdificarCasa)
         
@@ -95,8 +95,25 @@ module ModeloQytetet
       edificada
     end
   
-    def edificarHotel()
-      raise NotImplementedError
+    def edificarHotel(titulo)
+      edificado = false
+      
+      numHoteles = titulo.numHoteles
+      numCasas = titulo.numCasas
+      
+      if numHoteles <= 4 && numCasas == 4
+        costeEdificarHotel = titulo.precioEdificar
+        tengoSaldo = self.tengoSaldo(costeEdificarHotel)
+        
+        if(tengoSaldo)
+          titulo.numCasas = 0
+          titulo.edificarHotel
+          self.modificarSaldo(-costeEdificarHotel)
+          edificado = true
+        end
+      end
+      
+      edificado
     end
   
     def eliminarDeMisPropiedades(titulo)
