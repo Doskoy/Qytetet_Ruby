@@ -147,7 +147,7 @@ module ModeloQytetet
       edificada
     end
     
-    def edifarHotel(numeroCasilla)
+    def edificarHotel(numeroCasilla)
       casilla = @tablero.obtenerCasillaNumero(numeroCasilla)
       titulo = casilla.titulo
       edificado = @jugadorActual.edificarHotel(titulo)
