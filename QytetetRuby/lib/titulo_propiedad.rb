@@ -3,8 +3,7 @@ require_relative "jugador"
 module ModeloQytetet
   class TituloPropiedad
     attr_reader :nombre, :precioCompra, :alquilerBase, :factorRevalorizacion, :hipotecaBase, :precioEdificar, :numHoteles, :numCasas, :propietario
-    attr_accessor :hipotecada
-    attr_writer :propietario
+    attr_accessor :hipotecada, :propietario
       def initialize(nombre, precioCompra, precioEdificar, factorRevalorizacion, alquilerBase, hipotecaBase)
         @hipotecada = false
         @numHoteles = 0
@@ -96,10 +95,6 @@ module ModeloQytetet
       
       def propietarioEncarcelado()
         @propietario.encarcelado
-      end
-      
-      def setPropietario(propietario)  
-        raise NotImplementedError
       end
       
       def tengoPropietario()
