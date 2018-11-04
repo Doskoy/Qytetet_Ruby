@@ -5,6 +5,7 @@ require_relative "tablero"
 require_relative "casilla"
 require_relative "jugador"
 require_relative "dado"
+require_relative "estado_juego"
 require "singleton"
 
 module ModeloQytetet
@@ -323,8 +324,8 @@ module ModeloQytetet
         jugador.casillaActual = @tablero.obtenerCasillaNumero(0)
       end
       turno = Random.new
-      turno.rand(0...@jugadores.length)
-      @jugadorActual = @jugadores.at(turno)
+      primero = turno.rand(0...@jugadores.length)
+      @jugadorActual = @jugadores.at(primero)
       @estado = EstadoJuego::JA_PREPARADO
     end
     
@@ -350,6 +351,6 @@ module ModeloQytetet
       @estado = EstadoJuego::JA_PUEDEGESTIONAR
     end
     
-    private :encarcelarJugador, :inicializarCartasSorpresa, :inicializarJugadores, :inicializarTablero, :salidaJugadores, :setCartaActual
+    private :encarcelarJugador, :inicializarCartasSorpresa, :inicializarJugadores, :inicializarTablero, :salidaJugadores
   end
 end
