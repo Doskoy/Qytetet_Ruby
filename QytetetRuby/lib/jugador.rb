@@ -81,7 +81,7 @@ module ModeloQytetet
       
       numCasas = titulo.numCasas
       
-      if numCasas <= 4
+      if numCasas < 4
         costeEdificarCasa = titulo.precioEdificar
         tengoSaldo = self.tengoSaldo(costeEdificarCasa)
         
@@ -101,7 +101,7 @@ module ModeloQytetet
       numHoteles = titulo.numHoteles
       numCasas = titulo.numCasas
       
-      if numHoteles <= 4 && numCasas == 4
+      if numHoteles < 4 && numCasas == 4
         costeEdificarHotel = titulo.precioEdificar
         tengoSaldo = self.tengoSaldo(costeEdificarHotel)
         
