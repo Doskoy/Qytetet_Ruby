@@ -51,7 +51,9 @@ module ModeloQytetet
       end
       
       def calcularCosteCancelar
-        raise NotImplementedError
+        costeCancelar = calcularCosteHipotecar
+        costeCancelar = costeCancelar + (costeCancelar * 0.1)
+        costeCancelar.to_i
       end
       
       def calcularCosteHipotecar
@@ -69,11 +71,7 @@ module ModeloQytetet
       end
       
       def cancelarHipoteca
-        raise NotImplementedError
-      end
-      
-      def cobrarAlquiler(coste)
-        raise NotImplementedError
+        @hipotecada = false
       end
       
       def edificarCasa()

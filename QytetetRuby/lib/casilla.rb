@@ -42,10 +42,6 @@ module ModeloQytetet
     
     private_class_method :new
     
-    def set_titulo(titulo)
-      @titulo = titulo
-    end
-    
     def asignarPropietario(jugador)
       raise NotImplementedError
     end

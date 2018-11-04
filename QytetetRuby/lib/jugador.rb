@@ -23,7 +23,16 @@ module ModeloQytetet
     end
   
     def cancelarHipoteca(titulo)
-      raise NotImplementedError
+      cancelar = false
+      costeCancelar = titulo.calcularCosteCancelar
+      tengoSaldo = tengoSaldo(costeCancelar)
+      
+      if tengoSaldo
+        titulo.cancelarHipoteca
+        cancelar = true
+      end
+      
+      cancelar
     end
   
     def comprarTituloPropiedad
@@ -121,7 +130,7 @@ module ModeloQytetet
       titulo.propietario = nil
     end
   
-    def esDeMiPropiedad(titulo) 
+    def esDeMiPropiedad(titulo)
       for i in 0...@propiedades.size
         if (titulo == @propiedades[i])
           return true

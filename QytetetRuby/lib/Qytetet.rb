@@ -122,7 +122,16 @@ module ModeloQytetet
     end
     
     def cancelarHipoteca(numeroCasilla)
-      raise NotImplementedError
+      casilla = obtenerCasillaJugadorActual
+      esEdificable = casilla.soyEdificable
+      titulo = casilla.titulo
+      esDeMiPropiedad = @jugadorActual.esDeMiPropiedad(titulo)
+      hipotecada = titulo.hipotecada
+      cancelarHipoteca = false
+
+      if esEdificable && esDeMiPropiedad && hipotecada
+        cancelarHipoteca = @jugadorActual.cancelarHipoteca(titulo)
+      end
     end
     
     def comprarTituloPropiedad
