@@ -15,6 +15,10 @@ module ModeloQytetet
       @casillaActual = nil;
       @propiedades = Array.new
     end
+     
+    def <=>(otroJugador)
+      otroJugador.obtenerCapital <=> obtenerCapital
+    end
     
     def setCartaLibertad(cartaLibertad)
       if cartaLibertad.tipo == TipoSorpresa::SALIRCARCEL
