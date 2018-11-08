@@ -317,7 +317,7 @@ module ModeloQytetet
     
     def ObtenerSaldoJugadorActual
       @jugadorActual.saldo
-    end
+    end 
     
     def salidaJugadores
       for jugador in @jugadores do
