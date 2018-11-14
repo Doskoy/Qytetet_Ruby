@@ -67,7 +67,8 @@ module ModeloQytetet
         self.encarcelarJugador
         
       elsif casillaActual.tipo == TipoCasilla::SORPRESA
-        @cartaActual = nil
+        @cartaActual = @mazo[0]
+        @mazo.delete_at(0)
         @estado = EstadoJuego::JA_CONSORPRESA
       end
     end
