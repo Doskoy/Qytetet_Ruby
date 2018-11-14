@@ -12,14 +12,13 @@ module ModeloQytetet
     def self.main
       nombres = getNombreJugadores
       @@juego.inicializarJuego(nombres)
+
+      movimiento = @@juego.tirarDado
+      @@juego.mover(18)
+      puts @@juego.jugadorActual.saldo
+
+      puts "Impuesto: "; puts @@juego.jugadorActual.casillaActual
       
-      puts "ValorMayorQueCero #{ValorMayorQueCero().join(",")} "
-      puts "CartasIrA #{CartasIrA().join(",")}"
-      puts "Cartas SalirCarcel #{FiltrarTipo(TipoSorpresa::SALIRCARCEL).join(",")}"
-      
-      puts @@juego.tablero
-      
-      puts @@juego.jugadores
     end
     
     def self.getNombreJugadores

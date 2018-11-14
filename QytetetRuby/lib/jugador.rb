@@ -222,7 +222,7 @@ module ModeloQytetet
     end
   
     def to_s
-      texto = "\nNombre: #{@nombre}\nSaldo: #{@saldo}\nCapital: #{obtenerCapital()}\nEncarcelado: #{@encarcelado}\nEstá en la casilla: #{@casillaActual}\nCarta liberad: #{@cartaLibertad}\nPropiedades: \n"
+      texto = "\nNombre: #{@nombre}\nSaldo: #{@saldo}\nCapital: #{obtenerCapital()}\nEncarcelado: #{@encarcelado}\nEsta en la casilla: #{@casillaActual}\nCarta libertad: #{@cartaLibertad}\nPropiedades: \n"
       
       for i in 0...@propiedades.size
         texto += "#{@propiedades[i]}\n"

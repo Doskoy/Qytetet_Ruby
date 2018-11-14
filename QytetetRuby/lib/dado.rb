@@ -10,7 +10,7 @@ module ModeloQytetet
       end
       
       def tirar
-        tirada.Random.new
+        tirada = Random.new
         @valor = tirada.rand(1..6)
         return @valor
       end

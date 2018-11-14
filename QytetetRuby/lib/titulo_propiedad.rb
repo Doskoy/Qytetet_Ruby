@@ -106,14 +106,14 @@ module ModeloQytetet
       end
       
       def to_s
-        texto = "Nombre propiedad: #{@nombre}\nPropietario: #{@propietario}\nHipotecada: "
+        texto = "Nombre propiedad: #{@nombre}\nHipotecada: "
         
         if@hipotecada == true
           texto << "Sí"
         else
           texto << "No"
         end
-        texto << "\nPrecio de compra: #{@precioCompra}\nAlquiler base: #{@alquilerBase}\nFactor de revalorización: #{@factorRevalorizacion}\nHipoteca base: #{@hipotecaBase}\nPrecio de edificar: #{@precioEdificar}\nNúmero de hoteles/casas: #{@numHoteles}/#{@numCasas}"
+        texto << "\nPrecio de compra: #{@precioCompra}\nAlquiler base: #{@alquilerBase}\nFactor de revalorizacion: #{@factorRevalorizacion}\nHipoteca base: #{@hipotecaBase}\nPrecio de edificar: #{@precioEdificar}\nNumero de hoteles/casas: #{@numHoteles}/#{@numCasas}"
         texto
       end
       

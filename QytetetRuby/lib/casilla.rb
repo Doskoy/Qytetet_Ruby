@@ -69,7 +69,7 @@ module ModeloQytetet
     end
     
     def to_s
-      texto = "Estás en la casilla: #{@numeroCasilla}\nCoste de la casilla: #{@coste}\nTipo de casilla: #{@tipo}\nTítulo: "
+      texto = "Numero de la casilla: #{@numeroCasilla}\nCoste de la casilla: #{@coste}\nTipo de casilla: #{@tipo}\nTitulo: "
       
       unless @titulo == nil
         texto << "\n#{@titulo}"

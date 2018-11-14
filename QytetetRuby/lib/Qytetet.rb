@@ -46,11 +46,11 @@ module ModeloQytetet
       
       tengoPropietario = casilla.tengoPropietario
       
-      if @estado != EstadoJuego::ALGUNJUGADORENBANCAROTA
+      if @estado != EstadoJuego::ALGUNJUGADORENBANCARROTA
         if tengoPropietario
           @estado = EstadoJuego::JA_PUEDEGESTIONAR
         else
-          @estado = EstadoJuego::JA_PUEDECOMPRARGESTIONAR
+          @estado = EstadoJuego::JA_PUEDECOMPRAROGESTIONAR
         end
       end
     end
@@ -74,7 +74,7 @@ module ModeloQytetet
     end
     
     def aplicarSorpresa
-      @estado = EstadoJuego::PUEDOGESTIONAR
+      @estado = EstadoJuego::JA_PUEDEGESTIONAR
       
       if @cartaActual.tipo == TipoSorpresa::SALIRCARCEL
         @jugadorActual.setCartaLibertad(@cartaActual)
@@ -89,11 +89,12 @@ module ModeloQytetet
         valor = @cartaActual.valor
         casillaCarcel = @tablero.esCasillaCarcel(valor)
         if casillaCarcel
-          self.encarcelarJugador
+          encarcelarJugador
+          mover(valor)
         else
           self.mover(valor)
         end
-        
+      
       elsif @cartaActual.tipo == TipoSorpresa::PORCASAHOTEL
         cantidad = @cartaActual.valor
         numeroTotal = @jugadorActual.cuantasCasasHotelesTengo
@@ -142,7 +143,6 @@ module ModeloQytetet
     
     def comprarTituloPropiedad
       comprado = @jugadorActual.comprarTituloPropiedad
-      
       if comprado
         @estado = EstadoJuego::JA_PUEDEGESTIONAR
       end
@@ -198,19 +198,18 @@ module ModeloQytetet
     end
     
     def inicializarCartasSorpresa
-      @tablero = Tablero.new
       @mazo = Array.new
       @mazo << Sorpresa.new("El banco se ha equivocado en algunas cuentas y te devuelven dinero. Es que no estudian...", 250, TipoSorpresa::PAGARCOBRAR)
       @mazo << Sorpresa.new("Te han pillado tus cuentas en el extrangero.", -250, TipoSorpresa::PAGARCOBRAR)
       @mazo << Sorpresa.new("Tomas el metro llegas a la casilla 17.", 17, TipoSorpresa::IRACASILLA)
       @mazo << Sorpresa.new("Te hemos pillado transportando nesquik y Cola-Cao a la misma vez.", @tablero.carcel.numeroCasilla, TipoSorpresa::IRACASILLA)
-      @mazo << Sorpresa.new("El 7 dicen que da suerte. Vamos a comprobarlo mandándote a esa casilla.", 7, TipoSorpresa::IRACASILLA)
+      @mazo << Sorpresa.new("El 7 dicen que da suerte. Vamos a comprobarlo mandandote a esa casilla.", 7, TipoSorpresa::IRACASILLA)
       @mazo << Sorpresa.new("Pagar por el mantenimiento de tus propiedades.", -25, TipoSorpresa::PORCASAHOTEL)
       @mazo << Sorpresa.new("Tus edificios son muy bonitos. Recibes un premio de arquitectura.", 25, TipoSorpresa::PORCASAHOTEL)
-      @mazo << Sorpresa.new("Los demás se enteran de que tienes cuentas en el extrangero. Mejor sobornarlos para que no hablen, ¿no?", -200, TipoSorpresa::PORJUGADOR)
-      @mazo << Sorpresa.new("Parece ser que es tu cumpleaños o tal vez los estés engañando, maldito mentiroso, recibes dinero de los demás como regalo.", 200, TipoSorpresa::PORJUGADOR)
-      @mazo << Sorpresa.new("Tienes contactos en el gobierno que logran sacarte de la cárcel.", 0, TipoSorpresa::SALIRCARCEL)
-      @mazo.sort_by{rand}
+      @mazo << Sorpresa.new("Los demas se enteran de que tienes cuentas en el extrangero. Mejor sobornarlos para que no hablen, ¿no?", 200, TipoSorpresa::PORJUGADOR)
+      @mazo << Sorpresa.new("Parece ser que es tu cumpleaños o tal vez los estes engañando, maldito mentiroso, recibes dinero de los demás como regalo.", -200, TipoSorpresa::PORJUGADOR)
+      @mazo << Sorpresa.new("Tienes contactos en el gobierno que logran sacarte de la carcel.", 0, TipoSorpresa::SALIRCARCEL)
+      @mazo = @mazo.shuffle
     end
     
     def inicializarJuego(nombres)
@@ -324,8 +323,8 @@ module ModeloQytetet
       for jugador in @jugadores do
         jugador.casillaActual = @tablero.obtenerCasillaNumero(0)
       end
-      turno = Random.new
-      primero = turno.rand(0...@jugadores.length)
+      #turno = Random.new
+      primero = rand(0...@jugadores.length)
       @jugadorActual = @jugadores.at(primero)
       @estado = EstadoJuego::JA_PREPARADO
     end

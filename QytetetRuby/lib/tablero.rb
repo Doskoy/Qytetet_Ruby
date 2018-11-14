@@ -13,15 +13,15 @@ module ModeloQytetet
     def inicializar
       @casillas = Array.new
       @casillas << Casilla.newSalida(0)
-      titulo = TituloPropiedad.new("Avenida de Andalucía", 800, 500, 10, 60, 200)
+      titulo = TituloPropiedad.new("Avenida de Andalucia", 800, 500, 10, 60, 200)
       @casillas << Casilla.newCalle(1, titulo)
-      titulo = TituloPropiedad.new("Avenida de la Constitución", 800, 500, 10, 60, 200)
+      titulo = TituloPropiedad.new("Avenida de la Constitucion", 800, 500, 10, 60, 200)
       @casillas << Casilla.newCalle(2, titulo)
       @casillas << Casilla.newSorpresa(3)
       titulo = TituloPropiedad.new("Parque Almunia", 800, 500, 10, 60, 200)
       @casillas << Casilla.newCalle(4, titulo)
       @casillas << Casilla.newCarcel(5)
-      titulo = TituloPropiedad.new("Gran Vía de Colón",800 ,500, 10, 60, 200)
+      titulo = TituloPropiedad.new("Gran Via de Colon",800 ,500, 10, 60, 200)
       @casillas << Casilla.newCalle(6, titulo)
       @casillas << Casilla.newSorpresa(7)
       titulo = TituloPropiedad.new("Avenida de Dilar", 800, 500, 10, 60, 200)
