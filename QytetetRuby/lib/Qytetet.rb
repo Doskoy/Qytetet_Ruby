@@ -313,7 +313,7 @@ module ModeloQytetet
     end
     
     def obtenerRanking
-      raise NotImplementedError
+      @jugadores = @jugadores.sort
     end
     
     def ObtenerSaldoJugadorActual
