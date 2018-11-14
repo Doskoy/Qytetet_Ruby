@@ -41,7 +41,7 @@ module ModeloQytetet
           @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
         end
       end
-      
+
       casilla = @jugadorActual.casillaActual
       
       tengoPropietario = casilla.tengoPropietario
@@ -64,7 +64,7 @@ module ModeloQytetet
         @jugadorActual.pagarImpuesto
       
       elsif casillaActual.tipo == TipoCasilla::JUEZ
-        self.encarcelarJugador
+        encarcelarJugador
         
       elsif casillaActual.tipo == TipoCasilla::SORPRESA
         @cartaActual = @mazo[0]
@@ -125,7 +125,7 @@ module ModeloQytetet
     end
     
     def cancelarHipoteca(numeroCasilla)
-      casilla = obtenerCasillaJugadorActual
+      casilla = @tablero.obtenerCasillaNumero(numeroCasilla)
       esEdificable = casilla.soyEdificable
       titulo = casilla.titulo
       esDeMiPropiedad = @jugadorActual.esDeMiPropiedad(titulo)
@@ -232,7 +232,7 @@ module ModeloQytetet
     
     def intentarSalirCarcel(metodo)
       if metodo == MetodoSalirCarcel::TIRANDODADO
-        resultado = self.tirarDado
+        resultado = tirarDado
         if resultado >= 5
           @jugadorActual.encarcelado = false
         end
@@ -312,7 +312,7 @@ module ModeloQytetet
     end
     
     def obtenerRanking
-      @jugadores = @jugadores.sort
+      @jugadores=@jugadores.sort()
     end
     
     def ObtenerSaldoJugadorActual
@@ -325,6 +325,7 @@ module ModeloQytetet
       end
       #turno = Random.new
       primero = rand(0...@jugadores.length)
+      @iterador = primero
       @jugadorActual = @jugadores.at(primero)
       @estado = EstadoJuego::JA_PREPARADO
     end

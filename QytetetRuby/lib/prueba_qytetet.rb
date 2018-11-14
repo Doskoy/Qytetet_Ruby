@@ -2,6 +2,7 @@
 require_relative "Qytetet"
 require_relative "tablero"
 require_relative "TipoSorpresa"
+require_relative "Metodo_salir_carcel"
 module ModeloQytetet
   class PruebaQytetet
     @@juego = Qytetet.instance
@@ -12,12 +13,29 @@ module ModeloQytetet
     def self.main
       nombres = getNombreJugadores
       @@juego.inicializarJuego(nombres)
-
+      puts"---------------------------------------------------------"
       movimiento = @@juego.tirarDado
-      @@juego.mover(18)
+      @@juego.mover(1)
+      @@juego.comprarTituloPropiedad
+      puts @@juego.jugadorActual
+      puts "Compro Casa---------------------------------------------"
+      @@juego.edificarCasa(1)
+      @@juego.edificarCasa(1)
+      @@juego.edificarCasa(1)
+      @@juego.edificarCasa(1)
+      puts @@juego.jugadorActual
+      puts "Compro hotel---------------------------------------------"
+      @@juego.edificarHotel(1)
+      puts @@juego.jugadorActual
+      @@juego.siguienteJugador
+      @@juego.mover(1)
+      puts "Pum! Sablazo-----------------------------------------------"
       puts @@juego.jugadorActual.saldo
-
-      puts "Impuesto: "; puts @@juego.jugadorActual.casillaActual
+      puts "Im rich --------------------------------------------------"
+      @@juego.siguienteJugador
+      puts @@juego.jugadorActual.saldo
+      
+      puts @@juego.obtenerRanking
       
     end
     

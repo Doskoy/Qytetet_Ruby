@@ -17,7 +17,15 @@ module ModeloQytetet
     end
      
     def <=>(otroJugador)
-      otroJugador.obtenerCapital <=> obtenerCapital
+      otroCapital= otroJugador.obtenerCapital
+      miCapital = obtenerCapital
+      if otroCapital > miCapital
+        return 1 
+      end
+      if otroCapital < miCapital
+        return -1
+      end
+      return 0
     end
     
     def setCartaLibertad(cartaLibertad)
@@ -32,8 +40,8 @@ module ModeloQytetet
       tengoSaldo = tengoSaldo(costeCancelar)
       
       if tengoSaldo
-        titulo.cancelarHipoteca
-        cancelar = true
+        modificarSaldo(-costeCancelar)
+        cancelar = titulo.cancelarHipoteca
       end
       
       cancelar
@@ -59,7 +67,8 @@ module ModeloQytetet
       tienePropietario = false
       encarcelado = true
       estaHipotecada = true
-      if !esDeMiPropiedad
+
+      if (esDeMiPropiedad == false)
         tienePropietario = titulo.tengoPropietario
         if tienePropietario
           encarcelado = titulo.propietarioEncarcelado
@@ -68,8 +77,8 @@ module ModeloQytetet
           end
         end
       end
-    
-      return !esDeMiPropiedad && tienePropietario && !encarcelado && !estaHipotecada
+      debopagar = !esDeMiPropiedad && tienePropietario && !encarcelado && !estaHipotecada
+      debopagar
     end
 
 
@@ -119,7 +128,6 @@ module ModeloQytetet
         tengoSaldo = self.tengoSaldo(costeEdificarHotel)
         
         if(tengoSaldo)
-          titulo.numCasas = 0
           titulo.edificarHotel
           self.modificarSaldo(-costeEdificarHotel)
           edificado = true
@@ -135,13 +143,13 @@ module ModeloQytetet
     end
   
     def esDeMiPropiedad(titulo)
+      deMiPropiedad = false
       for i in 0...@propiedades.size
         if (titulo == @propiedades[i])
-          return true
-        else
-          return false
+          deMiPropiedad = true
         end
       end
+      return deMiPropiedad
     end
   
     def estoyEnCalleLibre()
@@ -150,6 +158,7 @@ module ModeloQytetet
   
     def hipotecarPropiedad(titulo)
       costeHipoteca = titulo.hipotecar
+      modificarSaldo(costeHipoteca)
     end
   
     def irACarcel(casilla)

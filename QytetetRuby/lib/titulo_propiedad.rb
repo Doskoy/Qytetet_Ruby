@@ -71,6 +71,7 @@ module ModeloQytetet
       
       def cancelarHipoteca
         @hipotecada = false
+        return true
       end
       
       def edificarCasa()
@@ -79,6 +80,7 @@ module ModeloQytetet
       
       def edificarHotel()
         @numHoteles = @numHoteles + 1
+        @numCasas = 0
       end
       
       def hipotecar()
@@ -88,7 +90,7 @@ module ModeloQytetet
       end
       
       def pagarAlquiler()
-        costeAlquiler = self.calcularCosteAlquiler
+        costeAlquiler = self.calcularImporteAlquiler
         @propietario.modificarSaldo(costeAlquiler)
         costeAlquiler
       end
