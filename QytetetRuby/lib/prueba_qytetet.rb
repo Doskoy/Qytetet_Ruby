@@ -2,7 +2,7 @@
 require_relative "Qytetet"
 require_relative "tablero"
 require_relative "TipoSorpresa"
-require_relative "Metodo_salir_carcel"
+require_relative "metodo_salir_carcel"
 module ModeloQytetet
   class PruebaQytetet
     @@juego = Qytetet.instance
