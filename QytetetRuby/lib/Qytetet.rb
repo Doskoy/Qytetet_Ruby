@@ -1,8 +1,6 @@
 #encoding: utf-8
 require_relative "Sorpresa"
-require_relative "TipoSorpresa"
 require_relative "tablero"
-require_relative "casilla"
 require_relative "jugador"
 require_relative "dado"
 require_relative "estado_juego"
@@ -313,7 +311,7 @@ module ModeloQytetet
     end
     
     def obtenerRanking
-      @jugadores=@jugadores.sort()
+      @jugadores=@jugadores.sort
     end
     
     def ObtenerSaldoJugadorActual

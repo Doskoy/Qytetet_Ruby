@@ -1,12 +1,10 @@
 #encoding: utf-8
 require_relative "casilla"
-require_relative "tablero"
 module ModeloQytetet
   class Jugador
-  
     attr_reader :nombre, :propiedades, :saldo, :cartaLibertad
     attr_accessor :casillaActual, :encarcelado
-  
+    
     def initialize(nombre)
       @encarcelado = false;
       @nombre = nombre;
@@ -180,6 +178,7 @@ module ModeloQytetet
         end
       end
       
+      capital
     end
   
     def obtenerPropiedades(hipotecada) 
