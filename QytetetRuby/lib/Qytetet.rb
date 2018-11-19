@@ -78,45 +78,49 @@ module ModeloQytetet
       if @cartaActual.tipo == TipoSorpresa::SALIRCARCEL
         @jugadorActual.setCartaLibertad(@cartaActual)
         
-      elsif @cartaActual.tipo == TipoSorpresa::PAGARCOBRAR
+      else
+        @mazo << @cartaActual
+        
+        if @cartaActual.tipo == TipoSorpresa::PAGARCOBRAR
         @jugadorActual.modificarSaldo(@cartaActual.valor)
-        if @jugadorActual.saldo < 0
-          @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
-        end
+          if @jugadorActual.saldo < 0
+            @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
+          end
         
-      elsif @cartaActual.tipo == TipoSorpresa::IRACASILLA
-        valor = @cartaActual.valor
-        casillaCarcel = @tablero.esCasillaCarcel(valor)
-        if casillaCarcel
-          encarcelarJugador
-          mover(valor)
-        else
-          self.mover(valor)
-        end
-      
-      elsif @cartaActual.tipo == TipoSorpresa::PORCASAHOTEL
-        cantidad = @cartaActual.valor
-        numeroTotal = @jugadorActual.cuantasCasasHotelesTengo
-        @jugadorActual.modificarSaldo(cantidad*numeroTotal)
-        
-        if @jugadorActual.saldo < 0
-          @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
-        end
-        
-      elsif @cartaActual.tipo == TipoSorpresa::PORJUGADOR
-        for i in 0...@jugadores.size
-          jugador = @jugadores[i]
-          
-          if jugador != @jugadorActual
-            jugador.modificarSaldo(@cartaActual.valor)
-            if jugador.saldo < 0
-              @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
-            end
-            
-            @jugadorActual.modificarSaldo(-@cartaActual.valor)
-            
-            if @jugadorActual.saldo < 0
-              @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
+        elsif @cartaActual.tipo == TipoSorpresa::IRACASILLA
+          valor = @cartaActual.valor
+          casillaCarcel = @tablero.esCasillaCarcel(valor)
+          if casillaCarcel
+            encarcelarJugador
+            mover(valor)
+          else
+            self.mover(valor)
+          end
+
+        elsif @cartaActual.tipo == TipoSorpresa::PORCASAHOTEL
+          cantidad = @cartaActual.valor
+          numeroTotal = @jugadorActual.cuantasCasasHotelesTengo
+          @jugadorActual.modificarSaldo(cantidad*numeroTotal)
+
+          if @jugadorActual.saldo < 0
+            @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
+          end
+
+        elsif @cartaActual.tipo == TipoSorpresa::PORJUGADOR
+          for i in 0...@jugadores.size
+            jugador = @jugadores[i]
+
+            if jugador != @jugadorActual
+              jugador.modificarSaldo(@cartaActual.valor)
+              if jugador.saldo < 0
+                @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
+              end
+
+              @jugadorActual.modificarSaldo(-@cartaActual.valor)
+
+              if @jugadorActual.saldo < 0
+                @estado = EstadoJuego::ALGUNJUGADORENBANCAROTA
+              end
             end
           end
         end
