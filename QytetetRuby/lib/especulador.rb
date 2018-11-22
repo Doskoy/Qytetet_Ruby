@@ -14,13 +14,14 @@ module ModeloQytetet
      
     def deboIrACarcel()
       deboIr = super.deboIrACarcel and !pagarFianza
+      deboIr
     end
     
     def convertirme(fianza)
       return self
     end
     
-    def pagarFianza()
+    def pagarFianza
       tengo = super.tengoSaldo(@fianza);
       if(tengo)
         super.modificarSaldo(-@fianza)
@@ -43,4 +44,6 @@ module ModeloQytetet
       super.to_s
     end
   end
+  
+  private :pagarFianza
 end

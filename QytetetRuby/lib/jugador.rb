@@ -101,7 +101,7 @@ module ModeloQytetet
       
       numCasas = titulo.numCasas
       
-      if puedoEdificarCasa()
+      if puedoEdificarCasa(titulo)
         costeEdificarCasa = titulo.precioEdificar
         tengoSaldo = self.tengoSaldo(costeEdificarCasa)
         
@@ -132,7 +132,7 @@ module ModeloQytetet
       numHoteles = titulo.numHoteles
       numCasas = titulo.numCasas
       
-      if puedoEdificarHotel
+      if puedoEdificarHotel(titulo)
         costeEdificarHotel = titulo.precioEdificar
         tengoSaldo = self.tengoSaldo(costeEdificarHotel)
         
@@ -246,7 +246,7 @@ module ModeloQytetet
     end
     
     def deboIrACarcel
-      tengoCartaLibertad
+      !tengoCartaLibertad
     end
     
     def to_s

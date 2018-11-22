@@ -3,81 +3,52 @@ require_relative "titulo_propiedad"
 
 module ModeloQytetet
   class Casilla
-    attr_reader :numeroCasilla, :coste, :tipo
-    attr_accessor :titulo
-    def initialize(tipo, coste, numeroCasilla, titulo)
+    attr_reader :numeroCasilla, :tipo
+    attr_accessor :coste
+    def initialize(tipo, coste, numeroCasilla)
       @tipo = tipo
       @coste = coste
       @numeroCasilla = numeroCasilla
-      @titulo = titulo
-    end
-    
-    def self.newCalle(numeroCasilla, titulo)
-      new(TipoCasilla::CALLE, titulo.precioCompra, numeroCasilla, titulo)
     end
     
     def self.newImpuesto(numeroCasilla, coste)
-      new(TipoCasilla::IMPUESTO, coste, numeroCasilla, nil)
+      new(TipoCasilla::IMPUESTO, coste, numeroCasilla)
     end
     
     def self.newSorpresa(numeroCasilla)
-      new(TipoCasilla::SORPRESA, 0, numeroCasilla, nil)
+      new(TipoCasilla::SORPRESA, 0, numeroCasilla)
     end
     
     def self.newSalida(numeroCasilla)
-      new(TipoCasilla::SALIDA, 1000, numeroCasilla, nil)
+      new(TipoCasilla::SALIDA, 1000, numeroCasilla)
     end
     
     def self.newJuez(numeroCasilla)
-      new(TipoCasilla::JUEZ, 0, numeroCasilla, nil)
+      new(TipoCasilla::JUEZ, 0, numeroCasilla)
     end
     
     def self.newParking(numeroCasilla)
-      new(TipoCasilla::PARKING, 0, numeroCasilla, nil)
+      new(TipoCasilla::PARKING, 0, numeroCasilla)
     end
     
     def self.newCarcel(numeroCasilla)
-      new(TipoCasilla::CARCEL, 0, numeroCasilla, nil)
+      new(TipoCasilla::CARCEL, 0, numeroCasilla)
     end
     
     private_class_method :new
     
-    def asignarPropietario(jugador)
-      @titulo.propietario = jugador
-    end
-    
-    def pagarAlquiler
-      costeAlquiler = @titulo.pagarAlquiler
-      
-      costeAlquiler
-    end
-    
-    def propietarioEncarcelado
-      @titulo.propietarioEncarcelado
+    def titulo
+      return nil
     end
     
     def soyEdificable
-      edificable = false
-      if(@tipo == TipoCasilla::CALLE)
-        edificable = true
-      end
-      return edificable
-    end
-    
-    def tengoPropietario
-      @titulo.tengoPropietario
+      return false
     end
     
     def to_s
-      texto = "Numero de la casilla: #{@numeroCasilla}\nCoste de la casilla: #{@coste}\nTipo de casilla: #{@tipo}\nTitulo: "
-      
-      unless @titulo == nil
-        texto << "\n#{@titulo}"
-      else
-        texto << "No tiene"
-        
+      texto = "Numero de la casilla: #{@numeroCasilla}\nCoste de la casilla: #{@coste}\nTipo de casilla: #{@tipo}\n"
+       
       texto
-      end
     end
   end
 end
