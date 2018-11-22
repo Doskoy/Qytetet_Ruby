@@ -24,11 +24,7 @@ module ModeloQytetet
     end
 
     def soyEdificable
-      edificable = false
-      if(@tipo == TipoCasilla::CALLE)
-        edificable = true
-      end
-      return edificable
+      return true
     end
 
     def tengoPropietario
@@ -40,7 +36,7 @@ module ModeloQytetet
       texto += "Titulo: "
       
       unless @titulo == nil
-        texto << "#{@titulo}\n"
+        texto << "#{@titulo}"
       end
         
       texto
