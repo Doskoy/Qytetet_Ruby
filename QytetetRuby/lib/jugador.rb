@@ -13,6 +13,21 @@ module ModeloQytetet
       @casillaActual = nil;
       @propiedades = Array.new
     end
+    
+    def self.nuevo(nombre)
+      new(nombre)
+    end
+    
+    def self.copiar(otroJugador)
+      @nombre = otroJugador.nombre
+      @saldo = otroJugador.saldo
+      @propiedades = otroJugador.propiedades
+      @cartaLibertad = otroJugador.cartaLibertad
+      @casillaActual = otroJugador.casillaActual
+      @encarcelado = otroJugador.encarcelado
+    end
+    
+    private_class_method :new
      
     def <=>(otroJugador)
       otroCapital= otroJugador.obtenerCapital

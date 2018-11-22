@@ -1,6 +1,5 @@
 #encoding: utf-8
 require_relative "casilla"
-require_relative "titulo_propiedad"
 
 module ModeloQytetet
   class Calle < Casilla
