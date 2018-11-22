@@ -34,9 +34,8 @@ module ModeloQytetet
       puts "Im rich --------------------------------------------------"
       @@juego.siguienteJugador
       puts @@juego.jugadorActual.saldo
-      
-      puts @@juego.obtenerRanking
-      
+      @@juego.obtenerRanking
+      puts @@juego.jugadores
     end
     
     def self.getNombreJugadores

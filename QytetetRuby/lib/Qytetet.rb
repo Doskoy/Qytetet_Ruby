@@ -68,6 +68,7 @@ module ModeloQytetet
       elsif casillaActual.tipo == TipoCasilla::SORPRESA
         @cartaActual = @mazo[0]
         @mazo.delete_at(0)
+        @mazo << @cartaActual
         @estado = EstadoJuego::JA_CONSORPRESA
       end
     end
@@ -123,6 +124,9 @@ module ModeloQytetet
               end
             end
           end
+        elsif @cartaActual.tipo == TipoSorpresa::CONVERTIRME
+          
+          @jugadores[@iterador] = @jugadorActual.convertirme(@cartaActual.valor)       
         end
       end
     end
@@ -178,7 +182,7 @@ module ModeloQytetet
     end
     
     def encarcelarJugador
-      unless @jugadorActual.tengoCartaLibertad
+      unless @jugadorActual.deboIrACarcel
         casillaCarcel = @tablero.carcel
         @jugadorActual.irACarcel(casillaCarcel)
         @estado = EstadoJuego::JA_ENCARCELADO
@@ -212,6 +216,10 @@ module ModeloQytetet
       @mazo << Sorpresa.new("Los demas se enteran de que tienes cuentas en el extrangero. Mejor sobornarlos para que no hablen, ¿no?", 200, TipoSorpresa::PORJUGADOR)
       @mazo << Sorpresa.new("Parece ser que es tu cumpleaños o tal vez los estes engañando, maldito mentiroso, recibes dinero de los demás como regalo.", -200, TipoSorpresa::PORJUGADOR)
       @mazo << Sorpresa.new("Tienes contactos en el gobierno que logran sacarte de la carcel.", 0, TipoSorpresa::SALIRCARCEL)
+      @mazo << Sorpresa.new("Enhorabuena, te has convertido en especulador, oficialmente eres mala gente.", 5000, TipoSorpresa::CONVERTIRME)
+      @mazo << Sorpresa.new("Enhorabuena, te has convertido en especulador, oficialmente eres mala gente.", 3000, TipoSorpresa::CONVERTIRME)
+
+      
       @mazo = @mazo.shuffle
     end
     
