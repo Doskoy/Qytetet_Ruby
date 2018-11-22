@@ -233,7 +233,7 @@ module ModeloQytetet
     def inicializarJugadores(nombres)
       @jugadores = Array.new
       for i in 0...nombres.size
-        @jugadores << Jugador.new(nombres[i])
+        @jugadores << Jugador.nuevo(nombres[i])
       end
     end
     
