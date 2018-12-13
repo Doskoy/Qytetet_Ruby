@@ -22,6 +22,7 @@ module ModeloQytetet
         @estado = nil
         @cartaActual = nil
         @metodosalircarcel = nil
+        @jugadores = nil
     end
     
     def self.getMaxJugadores

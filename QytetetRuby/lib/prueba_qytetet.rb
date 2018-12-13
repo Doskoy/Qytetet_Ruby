@@ -1,4 +1,5 @@
 #encoding: utf-8
+=begin
 require_relative "Qytetet"
 require_relative "tablero"
 require_relative "TipoSorpresa"
@@ -92,3 +93,4 @@ module ModeloQytetet
   PruebaQytetet.main
   
 end
+=endSW
