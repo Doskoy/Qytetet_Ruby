@@ -5,6 +5,7 @@ require_relative "jugador"
 require_relative "dado"
 require_relative "estado_juego"
 require_relative "metodo_salir_carcel"
+require_relative "tipoSorpresa"
 require "singleton"
 
 module ModeloQytetet
@@ -265,7 +266,7 @@ module ModeloQytetet
     def jugar
       resultadoDado = tirarDado
       casillaFinal = @tablero.obtenerCasillaFinal(obtenerCasillaJugadorActual, resultadoDado)
-      mover(casillaFinal)
+      mover(casillaFinal.numeroCasilla)
     end
     
     def mover(numCasillaDestino)
@@ -342,7 +343,6 @@ module ModeloQytetet
     def siguienteJugador
       index = @jugadores.index(@jugadorActual)
       index = (index + 1)%@jugadores.size
-      
       @jugadorActual = @jugadores.at(index)
       if (@jugadorActual.encarcelado)
         @estado = EstadoJuego::JA_ENCARCELADOCONOPCIONDELIBERTAD

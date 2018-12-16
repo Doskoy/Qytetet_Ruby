@@ -20,19 +20,19 @@ module Controladorqytetet
       permitidas  = Array.new
       if(@@modelo.jugadores == nil)
         permitidas << OpcionMenu::OpcionMenu.index(:INICIARJUEGO)
-        elsif(@@modelo.estado == EstadoJuego::ALGUNJUGADORENBANCAROTA)
+        else 
+          if(@@modelo.estado == ModeloQytetet::EstadoJuego::ALGUNJUGADORENBANCARROTA)
           permitidas << OpcionMenu::OpcionMenu.index(:OBTENERRANKING)
-        elsif (@@modelo.estado == EstadoJuego::JA_PREPARADO)
+        elsif (@@modelo.estado == ModeloQytetet::EstadoJuego::JA_PREPARADO)
           permitidas << OpcionMenu::OpcionMenu.index(:JUGAR)
-        elsif(@@modelo.estado == EstadoJuego::JA_PUEDEGESTIONAR)
+        elsif(@@modelo.estado == ModeloQytetet::EstadoJuego::JA_PUEDEGESTIONAR)
           permitidas << OpcionMenu::OpcionMenu.index(:PASARTURNO)
           permitidas << OpcionMenu::OpcionMenu.index(:VENDERPROPIEDAD)
           permitidas << OpcionMenu::OpcionMenu.index(:HIPOTECARPROPIEDAD)
           permitidas << OpcionMenu::OpcionMenu.index(:CANCELARHIPOTECA)
           permitidas << OpcionMenu::OpcionMenu.index(:EDIFICARCASA)
           permitidas << OpcionMenu::OpcionMenu.index(:EDIFICARHOTEL)
-          permitidas << OpcionMenu::OpcionMenu.index(:PASARTURNO)
-        elsif(@@modelo.estado == EstadoJuego::JA_PUEDECOMPRAROGESTIONAR)
+        elsif(@@modelo.estado == ModeloQytetet::EstadoJuego::JA_PUEDECOMPRAROGESTIONAR)
           permitidas << OpcionMenu::OpcionMenu.index(:COMPRARTITULOPROPIEDAD)
           permitidas << OpcionMenu::OpcionMenu.index(:VENDERPROPIEDAD)
           permitidas << OpcionMenu::OpcionMenu.index(:HIPOTECARPROPIEDAD)
@@ -40,11 +40,11 @@ module Controladorqytetet
           permitidas << OpcionMenu::OpcionMenu.index(:EDIFICARCASA)
           permitidas << OpcionMenu::OpcionMenu.index(:EDIFICARHOTEL)
           permitidas << OpcionMenu::OpcionMenu.index(:PASARTURNO)
-        elsif(@@modelo.estado == EstadoJuego::JA_CONSORPRESA) 
+        elsif(@@modelo.estado == ModeloQytetet::EstadoJuego::JA_CONSORPRESA) 
           permitidas << OpcionMenu::OpcionMenu.index(:APLICARSORPRESA)
-        elsif(@@modelo.estado == EstadoJuego::JA_ENCARCELADO)
+        elsif(@@modelo.estado == ModeloQytetet::EstadoJuego::JA_ENCARCELADO)
           permitidas << OpcionMenu::OpcionMenu.index(:PASARTURNO)
-        elsif(@@modelo.estado == EstadoJuego::JA_ENCARCELADOCONOPCIONDELIBERTAD) 
+        elsif(@@modelo.estado == ModeloQytetet::EstadoJuego::JA_ENCARCELADOCONOPCIONDELIBERTAD) 
           permitidas << OpcionMenu::OpcionMenu.index(:INTENTARSALIRCARCELPAGANDOLIBERTAD)
           permitidas << OpcionMenu::OpcionMenu.index(:INTENTARSALIRCARCELTIRANDODADO)
       end
@@ -52,6 +52,7 @@ module Controladorqytetet
       permitidas << OpcionMenu::OpcionMenu.index(:MOSTRARJUGADORES)
       permitidas << OpcionMenu::OpcionMenu.index(:MOSTRARTABLERO)
       permitidas << OpcionMenu::OpcionMenu.index(:TERMINARJUEGO)
+      end
       return permitidas
     end
     
@@ -87,9 +88,9 @@ module Controladorqytetet
            @@modelo.inicializarJuego(@nombreJugadores)
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:JUGAR)))
            @@modelo.jugar()
-            mensaje = "El dado ha sido tirado y ha salido un: " +@@modelo.getValorDado() + ".\n" +@@modelo.obtenerCasillaJugadorActual()
+            mensaje = "El dado ha sido tirado y ha salido un: " + "#{@@modelo.getValorDado()}" + ".\n" +"#{@@modelo.obtenerCasillaJugadorActual()}"
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:APLICARSORPRESA)))
-            mensaje = "Sorpresa aplicada:\n" + @@modelo.getCartaActual()
+            mensaje = "Sorpresa aplicada:\n" + "#{@@modelo.cartaActual}"
            @@modelo.aplicarSorpresa()
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:INTENTARSALIRCARCELPAGANDOLIBERTAD)))
            @@modelo.intentarSalirCarcel(MetodoSalirCarcel.PAGANDOLIBERTAD)
@@ -101,45 +102,45 @@ module Controladorqytetet
             if(modelo.jugadorActualEncarcelado())
                 mensaje = "No se pudo salir de la carcel."
             end
-        elsif(opcion == OpcionMenu::COMPRARTITULOPROPIEDAD)
-            boolean comprado =@@modelo.comprarTituloPropiedad()
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:COMPRARTITULOPROPIEDAD)))
+           comprado =@@modelo.comprarTituloPropiedad()
             if(!comprado)
                 mensaje = "No se pudo comprar: no tienes saldo suficiente."
             end
-        elsif(opcion == OpcionMenu::CANCELARHIPOTECA)
-            boolean cancelada =@@modelo.cancelarHipoteca(casillaElegida)
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:CANCELARHIPOTECA)))
+            cancelada =@@modelo.cancelarHipoteca(casillaElegida)
             if(!cancelada)
                 mensaje = "No se pudo cancelar. "
             end
-        elsif(opcion == OpcionMenu::EDIFICARCASA)
-            boolean sepudo =@@modelo.edificarCasa(casillaElegida)
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:EDIFICARCASA)))
+            sepudo =@@modelo.edificarCasa(casillaElegida)
             if(!sepudo)
                 mensaje = "No se pudo edificar la casa. "
             end
-        elsif(opcion == OpcionMenu::EDIFICARHOTEL)
-            boolean sepudo =@@modelo.edificarHotel(casillaElegida)
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:EDIFICARHOTEL)))
+            sepudo =@@modelo.edificarHotel(casillaElegida)
             if(!sepudo)
                 mensaje = "No se pudo edificar el hotel. "
             end
-        elsif(opcion == OpcionMenu::VENDERPROPIEDAD)
-            boolean vendida =@@modelo.venderPropiedad(casillaElegida)
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:VENDERPROPIEDAD)))
+            vendida =@@modelo.venderPropiedad(casillaElegida)
             if(!vendida)
                 mensaje = "No se pudo vender la propiedad. "
             end
-        elsif(opcion == OpcionMenu::PASARTURNO)
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:PASARTURNO)))
            @@modelo.siguienteJugador()
-        elsif(opcion == OpcionMenu::OBTENERRANKING)
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:OBTENERRANKING)))
            @@modelo.obtenerRanking()
-        elsif(opcion == OpcionMenu::TERMINARJUEGO)
-            System.out.println("Versión del Qytetet realizada en Java por: Manuel Jesús Núñez Ruiz y Fernando Roldán Zafra.")
-            System.exit(0);
-        elsif(opcion == OpcionMenu::MOSTRARJUGADORACTUAL)
-            mensaje =@@modelo.getJugadorActual().toString()
-        elsif(opcion == OpcionMenu::MOSTRARJUGADRES)
-            mensaje =@@modelo.getJugadores().toString()
-        elsif(opcion == OpcionMenu::MOSTRARTABLERO)
-            mensaje =modelo.getTablero().toString()
-        elsif(opcion == OpcionMenu::HIPOTECARPROPIEDAD)
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:TERMINARJUEGO)))
+            puts "Versión del Qytetet realizada en Java por: Manuel Jesús Núñez Ruiz y Fernando Roldán Zafra."
+            abort("Bye bye! Hope to see you soon!")
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:MOSTRARJUGADORACTUAL)))
+            mensaje =@@modelo.jugadorActual().toString()
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:MOSTRARJUGADRES)))
+            mensaje =@@modelo.jugadores().toString()
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:MOSTRARTABLERO)))
+            mensaje = @@modelo.tablero().toString()
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:HIPOTECARPROPIEDAD)))
            @@modelo.hipotecarPropiedad(casillaElegida)
         end
         return mensaje
