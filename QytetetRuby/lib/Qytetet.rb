@@ -5,7 +5,7 @@ require_relative "jugador"
 require_relative "dado"
 require_relative "estado_juego"
 require_relative "metodo_salir_carcel"
-require_relative "tipoSorpresa"
+require_relative "TipoSorpresa"
 require "singleton"
 
 module ModeloQytetet

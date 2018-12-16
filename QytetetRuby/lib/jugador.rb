@@ -256,7 +256,7 @@ module ModeloQytetet
     end
   
     def convertirme (fianza)
-      especulador = Especulador.new(self, fianza)
+      especulador = Especulador.copia(self, fianza)
       return especulador
     end
     
