@@ -66,9 +66,9 @@ module Vistatextualqytetet
     def elegirOperacion()
       operaciones = @@controlador.obtenerOperacionesJuegoValidas
       ops = Array.new
-      puts "#{OpcionMenu::OpcionMenu.index(:INICIARJUEGO)}"
+      puts Controladorqytetet::OpcionMenu::OpcionMenu.index(:INICIARJUEGO)
       for operacion in operaciones
-        puts "#{OpcionMenu::OpcionMenu.at(operacion)} ( #{operacion} )"
+        puts "#{Controladorqytetet::OpcionMenu::OpcionMenu.at(operacion)} ( #{operacion} )"
         ops << operacion.to_i
       end
       self.leerValorCorrecto(ops).to_s
