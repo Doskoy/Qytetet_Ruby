@@ -13,21 +13,20 @@ module ModeloQytetet
     attr_reader :mazo, :cartaActual, :jugadorActual, :jugadores, :tablero, :metodosalircarcel, :dado, :estado
     
     def initialize
-        @@max_jugadores = 4
-        @@num_sorpresas = 10
-        @@num_casillas = 20
-        @@precio_libertad = 200
-        @@saldo_salida = 1000
+        @@MAX_JUGADORES = 4
+        @@NUM_SORPRESAS = 10
+        @@NUM_CASILLAS = 20
+        @@PRECIO_LIBERTAD = 200
+        @@SALDO_SALIDA = 1000
         @dado = Dado.instance
         @estado = nil
         @cartaActual = nil
         @metodosalircarcel = nil
-        @iterador = 0
-
+        @jugadores = nil
     end
     
     def self.getMaxJugadores
-      @@max_jugadores
+      @@MAX_JUGADORES
     end
     
     def actuarSiEnCasillaEdificable
@@ -233,7 +232,7 @@ module ModeloQytetet
     def inicializarJugadores(nombres)
       @jugadores = Array.new
       for i in 0...nombres.size
-        @jugadores << Jugador.new(nombres[i])
+        @jugadores << Jugador.nuevo(nombres[i])
       end
     end
     
@@ -249,7 +248,7 @@ module ModeloQytetet
         end
         
       elsif metodo == MetodoSalirCarcel::PAGANDOLIBERTAD
-        @jugadorActual.pagarLibertad(@@precio_libertad)
+        @jugadorActual.pagarLibertad(@@PRECIO_LIBERTAD)
       end
       
       libre = @jugadorActual.encarcelado
@@ -275,7 +274,7 @@ module ModeloQytetet
       @jugadorActual.casillaActual = casillaFinal
       
       if numCasillaDestino < casillaInicial.numeroCasilla
-        @jugadorActual.modificarSaldo(@@saldo_salida)        
+        @jugadorActual.modificarSaldo(@@SALDO_SALIDA)        
       end
       
       if casillaFinal.soyEdificable
@@ -336,16 +335,15 @@ module ModeloQytetet
       end
       #turno = Random.new
       primero = rand(0...@jugadores.length)
-      @iterador = primero
-      @jugadorActual = @jugadores.at(primero)
+      @jugadorActual = @jugadores[primero]
       @estado = EstadoJuego::JA_PREPARADO
     end
     
     def siguienteJugador
-      @iterador += 1
-      @iterador = @iterador%@jugadores.length
+      index = @jugadores.index(@jugadorActual)
+      index = (index + 1)%@jugadores.size
       
-      @jugadorActual = @jugadores.at(@iterador)
+      @jugadorActual = @jugadores.at(index)
       if (@jugadorActual.encarcelado)
         @estado = EstadoJuego::JA_ENCARCELADOCONOPCIONDELIBERTAD
       else

@@ -1,6 +1,4 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
+#encoding: utf-8
 module ModeloQytetet
   class Especulador < Jugador
     def initialize (jugador, fianza )
@@ -8,19 +6,26 @@ module ModeloQytetet
        super(jugador)
     end
     
+    def self.copia(unJugador, fianza)
+      new(unJugador, fianza)
+    end
+    
+    private_class_method :new
+    
     def pagarImpuesto(cantidad)
       super.pagarImpuesto(-cantidad/2)
     end
      
     def deboIrACarcel()
       deboIr = super.deboIrACarcel and !pagarFianza
+      deboIr
     end
     
     def convertirme(fianza)
       return self
     end
     
-    def pagarFianza()
+    def pagarFianza
       tengo = super.tengoSaldo(@fianza);
       if(tengo)
         super.modificarSaldo(-@fianza)
@@ -43,4 +48,6 @@ module ModeloQytetet
       super.to_s
     end
   end
+  
+  private :pagarFianza
 end

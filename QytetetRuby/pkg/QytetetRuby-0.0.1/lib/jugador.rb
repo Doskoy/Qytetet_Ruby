@@ -13,6 +13,21 @@ module ModeloQytetet
       @casillaActual = nil;
       @propiedades = Array.new
     end
+    
+    def self.nuevo(nombre)
+      new(nombre)
+    end
+    
+    def self.copiar(otroJugador)
+      @nombre = otroJugador.nombre
+      @saldo = otroJugador.saldo
+      @propiedades = otroJugador.propiedades
+      @cartaLibertad = otroJugador.cartaLibertad
+      @casillaActual = otroJugador.casillaActual
+      @encarcelado = otroJugador.encarcelado
+    end
+    
+    private_class_method :new
      
     def <=>(otroJugador)
       otroCapital= otroJugador.obtenerCapital
@@ -101,7 +116,7 @@ module ModeloQytetet
       
       numCasas = titulo.numCasas
       
-      if puedoEdificarCasa()
+      if puedoEdificarCasa(titulo)
         costeEdificarCasa = titulo.precioEdificar
         tengoSaldo = self.tengoSaldo(costeEdificarCasa)
         
@@ -132,7 +147,7 @@ module ModeloQytetet
       numHoteles = titulo.numHoteles
       numCasas = titulo.numCasas
       
-      if puedoEdificarHotel
+      if puedoEdificarHotel(titulo)
         costeEdificarHotel = titulo.precioEdificar
         tengoSaldo = self.tengoSaldo(costeEdificarHotel)
         
@@ -246,7 +261,7 @@ module ModeloQytetet
     end
     
     def deboIrACarcel
-      tengoCartaLibertad
+      !tengoCartaLibertad
     end
     
     def to_s
