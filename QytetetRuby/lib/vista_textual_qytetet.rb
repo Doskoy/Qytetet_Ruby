@@ -45,7 +45,7 @@ module Vistatextualqytetet
       orden = ""
       correcto = false
       while(!correcto)
-        puts "¿Qué quieres hacer? "
+        puts "¿Que quieres hacer? "
         orden = gets.chomp.to_s
         
         for valor in valoresCorrectos
