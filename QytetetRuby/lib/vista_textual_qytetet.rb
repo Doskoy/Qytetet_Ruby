@@ -27,10 +27,10 @@ module Vistatextualqytetet
     end
     
     def elegirCasilla(opcionMenu)
-      casillas = controlador.obtenerCasillasValidas(opcionMenu)
+      casillas = @@controlador.obtenerCasillasValidas(opcionMenu)
       casillass = Array.new
-      
-      if(casillas.isEmpty())
+
+      if(casillas.empty?())
         return -1;
       else
         puts "\nIndique la casilla que desea cambiar: "
@@ -50,10 +50,8 @@ module Vistatextualqytetet
         orden = gets.chomp.to_i
         
         for valor in valoresCorrectos
-          while(!correcto)
-            if(orden.equal?(valor))
-              correcto = true;
-            end
+          if(orden.equal?(valor))
+            correcto = true;
           end
         end
         if(!correcto)

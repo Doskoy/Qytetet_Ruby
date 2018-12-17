@@ -70,8 +70,8 @@ module Controladorqytetet
         return @@modelo.obtenerPropiedadesJugadorSegunEstadoHipoteca(false);
       elsif (opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:CANCELARHIPOTECA)))
         return @@modelo.obtenerPropiedadesJugadorSegunEstadoHipoteca(true);
-      elsif (opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:HIPOTECARCASA)))
-        return @@modelo.obtenerPropiedadesJugador;
+      elsif (opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:HIPOTECARPROPIEDAD)))
+        return @@modelo.obtenerPropiedadesJugador
       elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:EDIFICARHOTEL)))
         return @@modelo.obtenerPropiedadesJugador
       elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:VENDERPROPIEDAD)))
@@ -135,11 +135,11 @@ module Controladorqytetet
             puts "Versión del Qytetet realizada en Java por: Manuel Jesús Núñez Ruiz y Fernando Roldán Zafra."
             abort("Bye bye! Hope to see you soon!")
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:MOSTRARJUGADORACTUAL)))
-            mensaje =@@modelo.jugadorActual().toString()
-        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:MOSTRARJUGADRES)))
-            mensaje =@@modelo.jugadores().toString()
+            mensaje =@@modelo.jugadorActual().to_s
+        elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:MOSTRARJUGADORES)))
+            mensaje =@@modelo.jugadores().to_s
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:MOSTRARTABLERO)))
-            mensaje = @@modelo.tablero().toString()
+            mensaje = @@modelo.tablero().to_s
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:HIPOTECARPROPIEDAD)))
            @@modelo.hipotecarPropiedad(casillaElegida)
         end
