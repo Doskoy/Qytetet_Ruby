@@ -46,10 +46,10 @@ module Vistatextualqytetet
       correcto = false
       while(!correcto)
         puts "¿Que quieres hacer? "
-        orden = gets.chomp.to_s
+        orden = gets.chomp
         
         for valor in valoresCorrectos
-          if(orden.to_s == valor.to_s)
+          if(orden == valor.to_s)
             correcto = true;
           end
         end
