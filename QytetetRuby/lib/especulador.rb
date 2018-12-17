@@ -1,4 +1,5 @@
 #encoding: utf-8
+require_relative "jugador"
 module ModeloQytetet
   class Especulador < Jugador
     def initialize (jugador, fianza )

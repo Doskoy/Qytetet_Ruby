@@ -72,6 +72,8 @@ module Controladorqytetet
         return @@modelo.obtenerPropiedadesJugadorSegunEstadoHipoteca(true);
       elsif (opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:HIPOTECARPROPIEDAD)))
         return @@modelo.obtenerPropiedadesJugador
+      elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:EDIFICARCASA)))
+        return @@modelo.obtenerPropiedadesJugador
       elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:EDIFICARHOTEL)))
         return @@modelo.obtenerPropiedadesJugador
       elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:VENDERPROPIEDAD)))

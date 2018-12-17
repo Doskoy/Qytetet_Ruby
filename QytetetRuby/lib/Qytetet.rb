@@ -6,6 +6,7 @@ require_relative "dado"
 require_relative "estado_juego"
 require_relative "metodo_salir_carcel"
 require_relative "TipoSorpresa"
+require_relative "titulo_propiedad"
 require "singleton"
 
 module ModeloQytetet
@@ -298,7 +299,7 @@ module ModeloQytetet
       casillas = @tablero.casillas
       for propiedad in propiedadesJA do
         for casilla in casillas do
-          if (casilla.titulo == propiedad.titulo)
+          if (casilla.titulo == propiedad)
             ncasillas << casilla.numeroCasilla
           end
         end

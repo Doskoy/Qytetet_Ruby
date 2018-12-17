@@ -1,6 +1,4 @@
-#enconding: utf-8
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
+#encoding: utf-8
 require_relative "opcion_menu"
 require_relative "controlador_qytetet"
 require_relative "Qytetet"
@@ -33,12 +31,13 @@ module Vistatextualqytetet
       if(casillas.empty?())
         return -1;
       else
-        puts "\nIndique la casilla que desea cambiar: "
+        print "\nIndique la casilla que desea cambiar: "
         for cas in casillas
-          puts "#{cas} "
-          casillass.add(Integer.toString(cas))
+          print"#{cas} "
+          casillass << (cas.to_s)
         end
-        return Integer(leerValorCorrecto(casillass))
+        print "\n"
+        return (leerValorCorrecto(casillass)).to_i
       end
     end
     
@@ -46,11 +45,11 @@ module Vistatextualqytetet
       orden = ""
       correcto = false
       while(!correcto)
-        puts "Que quieres hacer? "
-        orden = gets.chomp.to_i
+        puts "¿Qué quieres hacer? "
+        orden = gets.chomp.to_s
         
         for valor in valoresCorrectos
-          if(orden.equal?(valor))
+          if(orden.to_s == valor.to_s)
             correcto = true;
           end
         end
@@ -64,7 +63,7 @@ module Vistatextualqytetet
     def elegirOperacion()
       operaciones = @@controlador.obtenerOperacionesJuegoValidas
       ops = Array.new
-      print "Ordenes disponibles: "
+      puts "Ordenes disponibles: "
       for operacion in operaciones
         print "#{Controladorqytetet::OpcionMenu::OpcionMenu[operacion]} (#{operacion}) "
         ops << operacion.to_i
