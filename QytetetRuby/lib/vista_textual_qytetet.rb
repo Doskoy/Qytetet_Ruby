@@ -50,7 +50,7 @@ module Vistatextualqytetet
         
         for valor in valoresCorrectos
           if(orden == valor.to_s)
-            correcto = true;
+            correcto = true
           end
         end
         if(!correcto)

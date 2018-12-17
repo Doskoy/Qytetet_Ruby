@@ -4,7 +4,7 @@ module ModeloQytetet
   class Especulador < Jugador
     def initialize (jugador, fianza )
        @fianza = fianza
-       super(jugador)
+       super.copiar(jugador)
     end
     
     def self.copia(unJugador, fianza)

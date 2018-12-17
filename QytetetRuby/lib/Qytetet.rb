@@ -207,6 +207,8 @@ module ModeloQytetet
     
     def inicializarCartasSorpresa
       @mazo = Array.new
+      @mazo << Sorpresa.new("Enhorabuena, te has convertido en especulador, oficialmente eres mala gente.", 5000, TipoSorpresa::CONVERTIRME)
+      @mazo << Sorpresa.new("Enhorabuena, te has convertido en especulador, oficialmente eres mala gente.", 3000, TipoSorpresa::CONVERTIRME)
       @mazo << Sorpresa.new("El banco se ha equivocado en algunas cuentas y te devuelven dinero. Es que no estudian...", 250, TipoSorpresa::PAGARCOBRAR)
       @mazo << Sorpresa.new("Te han pillado tus cuentas en el extrangero.", -250, TipoSorpresa::PAGARCOBRAR)
       @mazo << Sorpresa.new("Tomas el metro llegas a la casilla 17.", 17, TipoSorpresa::IRACASILLA)
@@ -217,11 +219,9 @@ module ModeloQytetet
       @mazo << Sorpresa.new("Los demas se enteran de que tienes cuentas en el extrangero. Mejor sobornarlos para que no hablen, ¿no?", 200, TipoSorpresa::PORJUGADOR)
       @mazo << Sorpresa.new("Parece ser que es tu cumpleaños o tal vez los estes engañando, maldito mentiroso, recibes dinero de los demás como regalo.", -200, TipoSorpresa::PORJUGADOR)
       @mazo << Sorpresa.new("Tienes contactos en el gobierno que logran sacarte de la carcel.", 0, TipoSorpresa::SALIRCARCEL)
-      @mazo << Sorpresa.new("Enhorabuena, te has convertido en especulador, oficialmente eres mala gente.", 5000, TipoSorpresa::CONVERTIRME)
-      @mazo << Sorpresa.new("Enhorabuena, te has convertido en especulador, oficialmente eres mala gente.", 3000, TipoSorpresa::CONVERTIRME)
 
       
-      @mazo = @mazo.shuffle
+      #@mazo = @mazo.shuffle
     end
     
     def inicializarJuego(nombres)
