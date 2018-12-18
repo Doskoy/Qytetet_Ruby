@@ -222,7 +222,7 @@ module ModeloQytetet
       @mazo << Sorpresa.new("Tienes contactos en el gobierno que logran sacarte de la carcel.", 0, TipoSorpresa::SALIRCARCEL)
 
       
-      #@mazo = @mazo.shuffle
+      @mazo = @mazo.shuffle
     end
     
     def inicializarJuego(nombres)

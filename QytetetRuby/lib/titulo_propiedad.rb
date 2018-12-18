@@ -66,7 +66,7 @@ module ModeloQytetet
       end
       
       def calcularPrecioVenta
-        return (@precioCompra + ( @numCasas + @numHoteles ) + @precioEdificar * @factorRevalorizacion).to_i
+        return (@precioCompra + ( @numCasas + @numHoteles ) * @precioEdificar * @factorRevalorizacion).to_i
       end
       
       def cancelarHipoteca
