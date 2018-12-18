@@ -219,7 +219,7 @@ module ModeloQytetet
       self.modificarSaldo(-costeAlquiler)
     end
 
-    def pagarImpuesto()
+    def pagarImpuesto
       @saldo = @saldo - @casillaActual.coste
     end
   

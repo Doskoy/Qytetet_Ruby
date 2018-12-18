@@ -14,8 +14,8 @@ module ModeloQytetet
     
     private_class_method :new
     
-    def pagarImpuesto(cantidad)
-      super.pagarImpuesto(-cantidad/2)
+    def pagarImpuesto
+      @saldo = @saldo - @casillaActual.coste/2
     end
      
     def deboIrACarcel()
