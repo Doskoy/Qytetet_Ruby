@@ -6,13 +6,13 @@ module ModeloQytetet
     attr_reader :nombre, :propiedades, :saldo, :cartaLibertad
     attr_accessor :casillaActual, :encarcelado
     
-    def initialize(nombre)
-      @encarcelado = false;
-      @nombre = nombre;
-      @saldo = 7500;
-      @cartaLibertad = nil;
-      @casillaActual = nil;
-      @propiedades = Array.new
+    def initialize(nombre, encarcelado = false, saldo = 7500, cartaLibertad = nil, casillaActual = nil, propiedades = Array.new)
+      @encarcelado = encarcelado
+      @nombre = nombre
+      @saldo = saldo
+      @cartaLibertad = cartaLibertad
+      @casillaActual = casillaActual
+      @propiedades = propiedades
     end
     
     def self.nuevo(nombre)
@@ -20,12 +20,7 @@ module ModeloQytetet
     end
     
     def self.copia(otroJugador)
-      @nombre = otroJugador.nombre
-      @saldo = otroJugador.saldo
-      @propiedades = otroJugador.propiedades
-      @cartaLibertad = otroJugador.cartaLibertad
-      @casillaActual = otroJugador.casillaActual
-      @encarcelado = otroJugador.encarcelado
+      new(otroJugador.nombre, otroJugador.encarcelado, otroJugador.saldo, otroJugador.cartaLibertad, otroJugador.casillaActual, otroJugador.propiedades)
     end
     
     private_class_method :new
