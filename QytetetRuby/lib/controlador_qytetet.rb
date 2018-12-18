@@ -95,7 +95,7 @@ module Controladorqytetet
             mensaje = "Sorpresa aplicada:\n" + "#{@@modelo.cartaActual}"
            @@modelo.aplicarSorpresa()
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:INTENTARSALIRCARCELPAGANDOLIBERTAD)))
-           @@modelo.intentarSalirCarcel(MetodoSalirCarcel.PAGANDOLIBERTAD)
+          @@modelo.intentarSalirCarcel(ModeloQytetet::MetodoSalirCarcel::PAGANDOLIBERTAD)
             if(@@modelo.jugadorActualEncarcelado())
                 mensaje = "No se pudo salir de la carcel."
             end

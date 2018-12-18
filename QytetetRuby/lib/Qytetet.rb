@@ -184,7 +184,7 @@ module ModeloQytetet
     end
     
     def encarcelarJugador
-      unless @jugadorActual.deboIrACarcel
+      if @jugadorActual.deboIrACarcel
         casillaCarcel = @tablero.carcel
         @jugadorActual.irACarcel(casillaCarcel)
         @estado = EstadoJuego::JA_ENCARCELADO
