@@ -101,7 +101,7 @@ module Controladorqytetet
             end
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:INTENTARSALIRCARCELTIRANDODADO)))
            @@modelo.intentarSalirCarcel(ModeloQytetet::MetodoSalirCarcel::TIRANDODADO)
-            if(modelo.jugadorActualEncarcelado())
+            if(@@modelo.jugadorActualEncarcelado())
                 mensaje = "No se pudo salir de la carcel."
             end
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:COMPRARTITULOPROPIEDAD)))
