@@ -19,7 +19,7 @@ module ModeloQytetet
       new(nombre)
     end
     
-    def self.copiar(otroJugador)
+    def self.copia(otroJugador)
       @nombre = otroJugador.nombre
       @saldo = otroJugador.saldo
       @propiedades = otroJugador.propiedades
