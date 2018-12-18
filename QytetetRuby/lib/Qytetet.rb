@@ -126,8 +126,9 @@ module ModeloQytetet
             end
           end
         elsif @cartaActual.tipo == TipoSorpresa::CONVERTIRME
-          
-          @jugadores[@jugadores.index(@jugadorActual)] = @jugadorActual.convertirme(@cartaActual.valor)       
+          espec = @jugadorActual.convertirme(@cartaActual.valor)
+          @jugadores[@jugadores.index(@jugadorActual)] = espec
+          @jugadorActual = espec
         end
       end
     end

@@ -4,11 +4,12 @@ module ModeloQytetet
     
   end
   class Especulador < Jugador
-    attr_reader :fianza
+    attr_accessor :fianza
     
     def self.copia(unJugador, fianza)
-      @fianza = fianza
-      new super(unJugador)
+      espec = super(unJugador)
+      espec.fianza = fianza
+      espec
     end
     
     private_class_method :new
