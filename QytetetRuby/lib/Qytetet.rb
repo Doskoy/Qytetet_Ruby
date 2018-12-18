@@ -316,7 +316,7 @@ module ModeloQytetet
       casillas = @tablero.casillas
       for propiedad in propiedadesJA do
         for casilla in casillas do
-          if (casilla.titulo == propiedad.titulo and propiedad.titulo.hipotecada == estadoHipoteca)
+          if (casilla.titulo == propiedad and propiedad.hipotecada == estadoHipoteca)
             casillasHip << casilla.numeroCasilla
           end
         end
