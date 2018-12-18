@@ -1,10 +1,12 @@
 #encoding: utf-8
-require_relative "jugador"
 module ModeloQytetet
+  class Jugador
+    
+  end
   class Especulador < Jugador
     def initialize (jugador, fianza )
        @fianza = fianza
-       super.copiar(jugador)
+       super(jugador)
     end
     
     def self.copia(unJugador, fianza)
@@ -50,5 +52,4 @@ module ModeloQytetet
     end
   end
   
-  private :pagarFianza
 end

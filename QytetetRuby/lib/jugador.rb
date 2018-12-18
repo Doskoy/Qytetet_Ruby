@@ -1,5 +1,6 @@
 #encoding: utf-8
 require_relative "casilla"
+require_relative "especulador"
 module ModeloQytetet
   class Jugador
     attr_reader :nombre, :propiedades, :saldo, :cartaLibertad
