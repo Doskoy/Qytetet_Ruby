@@ -19,7 +19,7 @@ module ModeloQytetet
     end
      
     def deboIrACarcel()
-      deboIr = super.deboIrACarcel and !pagarFianza
+      deboIr = super and !pagarFianza
       deboIr
     end
     
@@ -28,9 +28,9 @@ module ModeloQytetet
     end
     
     def pagarFianza
-      tengo = super.tengoSaldo(@fianza);
+      tengo = self.tengoSaldo(@fianza);
       if(tengo)
-        super.modificarSaldo(-@fianza)
+        self.modificarSaldo(-@fianza)
       end
       return tengo
     end
@@ -47,7 +47,7 @@ module ModeloQytetet
     end
     
     def to_s
-      super.to_s
+      super
     end
   end
   

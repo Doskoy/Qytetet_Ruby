@@ -139,7 +139,9 @@ module Controladorqytetet
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:MOSTRARJUGADORACTUAL)))
             mensaje =@@modelo.jugadorActual().to_s
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:MOSTRARJUGADORES)))
-            mensaje =@@modelo.jugadores().to_s
+            for jugador in @@modelo.jugadores
+              mensaje += jugador.to_s + "\n"
+            end
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:MOSTRARTABLERO)))
             mensaje = @@modelo.tablero().to_s
         elsif(opcion == OpcionMenu::OpcionMenu.at(OpcionMenu::OpcionMenu.index(:HIPOTECARPROPIEDAD)))
