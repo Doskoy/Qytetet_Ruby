@@ -49,6 +49,7 @@ module ModeloQytetet
     def to_s
       super
     end
+    
+    private :pagarFianza
   end
-  
 end

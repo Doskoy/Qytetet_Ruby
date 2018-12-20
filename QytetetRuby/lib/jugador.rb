@@ -268,6 +268,8 @@ module ModeloQytetet
       end
       return texto
     end
+    
+    private :esDeMiPropiedad, :eliminarDeMisPropiedades
   end
 end
 
